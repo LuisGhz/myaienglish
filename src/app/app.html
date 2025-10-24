@@ -1,3 +1,8 @@
-<div class="min-h-dvh bg-dove-gray-950">
-  <router-outlet />
-</div>
+<nz-layout class="min-h-dvh bg-dove-gray-950">
+  <nz-sider class="bg-dove-gray-950 border-e border-e-dove-gray-400">
+    <app-sider />
+  </nz-sider>
+  <nz-content>
+    <router-outlet />
+  </nz-content>
+</nz-layout>
