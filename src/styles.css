@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .wcag-outline {
+    @apply focus:outline-2 focus:outline-gray-200;
+  }
+
+  .trans-c-200 {
+    @apply transition-colors duration-200;
+  }
+}
