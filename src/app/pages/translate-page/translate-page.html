@@ -1,1 +1,31 @@
-<p>translate-page works!</p>
+<main class="h-full flex flex-col gap-4">
+  <section>
+    <nz-select class="w-40">
+      @for (instruction of instructions(); track $index) {
+      <nz-option [nzLabel]="instruction.text" [nzValue]="instruction.id"></nz-option>
+      }
+    </nz-select>
+  </section>
+  <section>
+    <p>Additional context</p>
+    <textarea
+      name="additional-context"
+      id="additional-context"
+      nz-input
+      [nzAutosize]="{ minRows: 4, maxRows: 4 }"
+    ></textarea>
+  </section>
+  <section class="flex flex-col md:flex-row gap-2">
+    <div class="w-full md:w-1/2">
+      <textarea
+        name="text-to-translate"
+        id="text-to-translate"
+        nz-input
+        [nzAutosize]="{ minRows: 4, maxRows: 4 }"
+      ></textarea>
+    </div>
+    <div class="w-full md:w-1/2">
+      <p>Translated text</p>
+    </div>
+  </section>
+</main>
