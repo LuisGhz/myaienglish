@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { NzInputModule } from 'ng-zorro-antd/input';
 
 @Component({
   selector: 'app-instructions-page',
-  imports: [],
+  imports: [NzInputModule],
   templateUrl: './instructions-page.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InstructionsPage {
-
-}
+export class InstructionsPage {}

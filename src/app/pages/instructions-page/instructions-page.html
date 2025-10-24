@@ -1,1 +1,28 @@
-<p>instructions-page works!</p>
+<main>
+  <h1 class="text-white text-xl text-center">Instructions</h1>
+  <section class="relative">
+    <div class="w-10/12 flex flex-col gap-2">
+      <input type="text" name="instruction-name" id="instruction-name" nz-input />
+      <textarea
+        name="instruction"
+        id="instruction"
+        nz-input
+        [nzAutosize]="{ minRows: 4, maxRows: 4 }"
+      ></textarea>
+    </div>
+    <button
+      class="text-red-600 text-lg font-bold rounded-full h-7 w-7 absolute top-0 right-0 wcag-outline"
+      aria-label="Delete instruction"
+    >
+      X
+    </button>
+  </section>
+  <section class="flex justify-end mt-5">
+    <button
+      class="bg-green-700 hover:bg-green-500 focus:bg-green-500 trans-c-200 rounded-md px-4 py-2 cursor-pointer wcag-outline"
+      aria-label="Add instruction"
+    >
+      Add Instruction
+    </button>
+  </section>
+</main>
