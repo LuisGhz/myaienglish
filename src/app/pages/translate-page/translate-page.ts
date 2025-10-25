@@ -1,7 +1,9 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { InstructionsApi } from '../../services/instructions-api';
+import { rxResource } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-translate-page',
@@ -10,14 +12,9 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TranslatePage {
-  instructions = signal<{ text: string; id: string }[]>([
-    {
-      id: 'how-to-say',
-      text: 'How to say...',
-    },
-    {
-      id: 'improve-my-writing',
-      text: 'Improve my writing',
-    },
-  ]);
+  #instructionsApi = inject(InstructionsApi);
+  $instructions = rxResource({
+    defaultValue: [],
+    stream: () => this.#instructionsApi.getInstructions(),
+  });
 }

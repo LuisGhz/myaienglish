@@ -1,8 +1,8 @@
 <main class="h-full flex flex-col gap-4">
   <section>
-    <nz-select class="w-40">
-      @for (instruction of instructions(); track $index) {
-      <nz-option [nzLabel]="instruction.text" [nzValue]="instruction.id"></nz-option>
+    <nz-select class="w-60">
+      @for (instruction of $instructions.value(); track $index) {
+      <nz-option [nzLabel]="instruction.name" [nzValue]="instruction.id"></nz-option>
       }
     </nz-select>
   </section>
