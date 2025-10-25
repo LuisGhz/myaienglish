@@ -12,4 +12,19 @@ export class InstructionsApi {
   getInstructions() {
     return this.#httpClient.get<Instruction[]>(`${environment.apiUrl}/instructions`);
   }
+
+  createInstruction(instruction: Instruction) {
+    return this.#httpClient.post<Instruction>(`${environment.apiUrl}/instructions`, instruction);
+  }
+
+  updateInstruction(id: string, updates: Partial<Instruction>) {
+    return this.#httpClient.patch<Instruction>(
+      `${environment.apiUrl}/instructions/${id}/update`,
+      updates
+    );
+  }
+
+  deleteInstruction(id: string) {
+    return this.#httpClient.delete<void>(`${environment.apiUrl}/instructions/${id}/delete`);
+  }
 }

@@ -1,5 +1,5 @@
 export interface Instruction {
-  id: string;
+  id?: string;
   name: string;
-  text: string;
+  content: string;
 }
