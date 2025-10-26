@@ -8,23 +8,24 @@ import { Instruction } from '../models/instruction';
 })
 export class InstructionsApi {
   #httpClient = inject(HttpClient);
+  #baseUrl = `${environment.apiUrl}/instructions`;
 
   getInstructions() {
-    return this.#httpClient.get<Instruction[]>(`${environment.apiUrl}/instructions`);
+    return this.#httpClient.get<Instruction[]>(this.#baseUrl);
   }
 
   createInstruction(instruction: Instruction) {
-    return this.#httpClient.post<Instruction>(`${environment.apiUrl}/instructions`, instruction);
+    return this.#httpClient.post<Instruction>(this.#baseUrl, instruction);
   }
 
   updateInstruction(id: string, updates: Partial<Instruction>) {
     return this.#httpClient.patch<Instruction>(
-      `${environment.apiUrl}/instructions/${id}/update`,
+      `${this.#baseUrl}/${id}/update`,
       updates
     );
   }
 
   deleteInstruction(id: string) {
-    return this.#httpClient.delete<void>(`${environment.apiUrl}/instructions/${id}/delete`);
+    return this.#httpClient.delete<void>(`${this.#baseUrl}/${id}/delete`);
   }
 }
