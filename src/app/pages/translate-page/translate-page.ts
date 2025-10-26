@@ -21,6 +21,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     MarkdownModule,
   ],
   templateUrl: './translate-page.html',
+  styleUrl: './translate-page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TranslatePage {
@@ -44,6 +45,7 @@ export class TranslatePage {
   tokenInfo = signal<{ inputTokens: number; outputTokens: number; totalTokens: number } | null>(
     null
   );
+  isFavoriteClicked = signal<boolean>(false);
 
   onTranslate(): void {
     if (this.translateForm.invalid || this.isLoading()) return;
@@ -74,6 +76,9 @@ export class TranslatePage {
   }
 
   addFavoriteTranslation(): void {
+    this.isFavoriteClicked.set(true);
+    setTimeout(() => this.isFavoriteClicked.set(false), 600);
+
     const originalText = this.translateForm.get('textToTranslate')?.value!;
     const translatedText = this.translatedText();
     this.#translateApi.addFavoriteTranslation({ originalText, translatedText }).subscribe();
