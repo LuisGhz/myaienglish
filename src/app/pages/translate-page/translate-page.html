@@ -7,16 +7,17 @@
     </nz-select>
   </section>
   <section>
-    <p class="text-white">Additional context</p>
+    <label class="text-white" for="additional-context">Additional context</label>
     <textarea
       formControlName="context"
       id="additional-context"
       nz-input
-      [nzAutosize]="{ minRows: 4, maxRows: 4 }"
+      [nzAutosize]="{ minRows: 3, maxRows: 3 }"
     ></textarea>
   </section>
   <section class="flex flex-col md:flex-row gap-2">
     <div class="w-full md:w-1/2">
+      <label class="text-white" for="text-to-translate">Text to translate:</label>
       <textarea
         formControlName="textToTranslate"
         id="text-to-translate"
