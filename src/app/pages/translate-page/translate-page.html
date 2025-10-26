@@ -25,9 +25,12 @@
         [nzAutosize]="{ minRows: 4, maxRows: 4 }"
       ></textarea>
     </div>
-    <div class="w-full md:w-1/2">
+    <div class="w-full md:w-1/2 relative">
       @if (translatedText() !== '') {
       <div class="p-4 text-white text-lg rounded-md">
+        <button class="absolute top-0 right-0" (click)="addFavoriteTranslation()" aria-label="Add translation to favorites">
+          <nz-icon nzType="heart" nzTheme="twotone" nzTwotoneColor="#eb2f96" />
+        </button>
         <markdown>
           {{ translatedText() }}
         </markdown>

@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { TranslateTextReq } from '../models/translate-text-req.model';
 import { environment } from '../../environments/environment';
 import { TranslateTextRes } from '../models/translate-text-res.model';
+import { AddFavTranslationReq } from '../models/add-fav-translation-req.model';
 
 @Injectable({
   providedIn: 'root',
@@ -16,5 +17,9 @@ export class TranslateApi {
       textToTranslate,
       context,
     });
+  }
+
+  addFavoriteTranslation(translation: AddFavTranslationReq) {
+    return this.#httpClient.post(`${environment.apiUrl}/favorites/translations`, translation);
   }
 }

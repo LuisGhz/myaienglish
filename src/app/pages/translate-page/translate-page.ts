@@ -8,10 +8,18 @@ import { InstructionsApi } from '../../services/instructions-api';
 import { TranslateApi } from '../../services/translate-api';
 import { TranslateTextReq } from '../../models/translate-text-req.model';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @Component({
   selector: 'app-translate-page',
-  imports: [ReactiveFormsModule, NzSelectModule, NzInputModule, NzButtonModule, MarkdownModule],
+  imports: [
+    ReactiveFormsModule,
+    NzSelectModule,
+    NzInputModule,
+    NzIconModule,
+    NzButtonModule,
+    MarkdownModule,
+  ],
   templateUrl: './translate-page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -63,5 +71,11 @@ export class TranslatePage {
         this.isLoading.set(false);
       },
     });
+  }
+
+  addFavoriteTranslation(): void {
+    const originalText = this.translateForm.get('textToTranslate')?.value!;
+    const translatedText = this.translatedText();
+    this.#translateApi.addFavoriteTranslation({ originalText, translatedText }).subscribe();
   }
 }
