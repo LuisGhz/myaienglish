@@ -7,10 +7,11 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { InstructionsApi } from '../../services/instructions-api';
 import { TranslateApi } from '../../services/translate-api';
 import { TranslateTextReq } from '../../models/translate-text-req.model';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 
 @Component({
   selector: 'app-translate-page',
-  imports: [ReactiveFormsModule, NzSelectModule, NzInputModule, MarkdownModule],
+  imports: [ReactiveFormsModule, NzSelectModule, NzInputModule, NzButtonModule, MarkdownModule],
   templateUrl: './translate-page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -37,9 +38,7 @@ export class TranslatePage {
   );
 
   onTranslate(): void {
-    if (this.translateForm.invalid) {
-      return;
-    }
+    if (this.translateForm.invalid || this.isLoading()) return;
 
     const { instructionId, context, textToTranslate } = this.translateForm.getRawValue();
 

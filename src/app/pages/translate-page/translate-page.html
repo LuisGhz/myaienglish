@@ -52,12 +52,17 @@
       } }
     </div>
   </section>
-  <button
-    (click)="onTranslate()"
-    [disabled]="translateForm.invalid || isLoading()"
-    class="bg-green-700 hover:bg-green-500 focus:bg-green-500 trans-c-200 rounded-md px-4 py-2 cursor-pointer wcag-outline w-40 disabled:bg-gray-400 disabled:cursor-not-allowed"
-    aria-label="Translate text"
-  >
-    {{ isLoading() ? 'Translating...' : 'Translate' }}
-  </button>
+  <section class="flex justify-center">
+    <button
+      (click)="onTranslate()"
+      [disabled]="translateForm.invalid"
+      class="wcag-outline w-40"
+      aria-label="Translate text"
+      nz-button
+      nzType="primary"
+      [nzLoading]="isLoading()"
+    >
+      {{ isLoading() ? 'Translating...' : 'Translate' }}
+    </button>
+  </section>
 </main>
