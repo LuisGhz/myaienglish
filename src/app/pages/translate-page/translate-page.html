@@ -7,7 +7,7 @@
     </nz-select>
   </section>
   <section>
-    <p>Additional context</p>
+    <p class="text-white">Additional context</p>
     <textarea
       formControlName="context"
       id="additional-context"
@@ -25,32 +25,31 @@
       ></textarea>
     </div>
     <div class="w-full md:w-1/2">
-      <p>Translated text</p>
       @if (translatedText() !== '') {
-      <div class="p-4 bg-gray-100 rounded-md">
-        {{ translatedText() }}
+      <div class="p-4 text-white text-lg rounded-md">
+        <markdown>
+          {{ translatedText() }}
+        </markdown>
       </div>
       @if (tokenInfo()) {
-      <div class="mt-3 p-3 bg-blue-50 rounded-md text-sm text-gray-700 border border-blue-200">
+      <div class="mt-3 p-3 rounded-md text-sm text-dove-gray-200 border border-blue-400">
         <p class="font-semibold mb-2">Token Usage</p>
         <div class="grid grid-cols-3 gap-2">
           <div>
-            <span class="text-gray-600">Input:</span>
+            <span>Input:</span>
             <p class="font-medium">{{ tokenInfo()!.inputTokens }}</p>
           </div>
           <div>
-            <span class="text-gray-600">Output:</span>
+            <span>Output:</span>
             <p class="font-medium">{{ tokenInfo()!.outputTokens }}</p>
           </div>
           <div>
-            <span class="text-gray-600">Total:</span>
+            <span>Total:</span>
             <p class="font-medium">{{ tokenInfo()!.totalTokens }}</p>
           </div>
         </div>
       </div>
-      } } @else {
-      <div class="p-4 bg-gray-50 rounded-md text-gray-400">Translation will appear here</div>
-      }
+      } }
     </div>
   </section>
   <button

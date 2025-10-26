@@ -1,15 +1,16 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { rxResource } from '@angular/core/rxjs-interop';
+import { MarkdownModule } from 'ngx-markdown';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { InstructionsApi } from '../../services/instructions-api';
-import { rxResource } from '@angular/core/rxjs-interop';
 import { TranslateApi } from '../../services/translate-api';
 import { TranslateTextReq } from '../../models/translate-text-req.model';
 
 @Component({
   selector: 'app-translate-page',
-  imports: [ReactiveFormsModule, NzSelectModule, NzInputModule],
+  imports: [ReactiveFormsModule, NzSelectModule, NzInputModule, MarkdownModule],
   templateUrl: './translate-page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
