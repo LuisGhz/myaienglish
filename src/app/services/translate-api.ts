@@ -11,9 +11,10 @@ import { FavTranslation } from '../models/fav-translation.model';
 })
 export class TranslateApi {
   #httpClient = inject(HttpClient);
+  #baseUrl = `${environment.apiUrl}/translate`;
 
   translateText({ instructionId, textToTranslate, context }: TranslateTextReq) {
-    return this.#httpClient.post<TranslateTextRes>(`${environment.apiUrl}/translate`, {
+    return this.#httpClient.post<TranslateTextRes>(this.#baseUrl, {
       instructionId,
       textToTranslate,
       context,
@@ -21,14 +22,14 @@ export class TranslateApi {
   }
 
   getFavoriteTranslations() {
-    return this.#httpClient.get<FavTranslation[]>(`${environment.apiUrl}/favorites/translations`);
+    return this.#httpClient.get<FavTranslation[]>(`${this.#baseUrl}/favorites`);
   }
 
   addFavoriteTranslation(translation: AddFavTranslationReq) {
-    return this.#httpClient.post(`${environment.apiUrl}/favorites/translations`, translation);
+    return this.#httpClient.post(`${this.#baseUrl}/favorites`, translation);
   }
 
   removeFavoriteTranslation(id: string) {
-    return this.#httpClient.delete(`${environment.apiUrl}/favorites/translations/${id}/delete`);
+    return this.#httpClient.delete(`${this.#baseUrl}/favorites/${id}/delete`);
   }
 }
