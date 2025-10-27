@@ -1,7 +1,7 @@
 import {
   ApplicationConfig,
   provideBrowserGlobalErrorListeners,
-  provideZonelessChangeDetection,
+  provideZonelessChangeDetection, isDevMode,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
@@ -12,6 +12,7 @@ import en from '@angular/common/locales/en';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { MERMAID_OPTIONS, provideMarkdown } from 'ngx-markdown';
+import { provideServiceWorker } from '@angular/service-worker';
 
 registerLocaleData(en);
 
@@ -32,6 +33,9 @@ export const appConfig: ApplicationConfig = {
           look: 'handDrawn',
         },
       },
-    }),
+    }), provideServiceWorker('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            registrationStrategy: 'registerWhenStable:30000'
+          }),
   ],
 };
