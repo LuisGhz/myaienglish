@@ -1,31 +1,57 @@
-<nav class="h-full">
-  <ul class="py-5">
+<nav class="h-full flex flex-col">
+  <div class="flex justify-end p-2">
+    <button
+      (click)="toggleCollapse()"
+      class="text-white hover:text-dove-gray-100 focus:ring-2 focus:ring-gray-400 rounded p-1 transition-colors duration-200"
+      [attr.aria-label]="isCollapsed() ? 'Expand sidebar' : 'Collapse sidebar'"
+      [attr.title]="isCollapsed() ? 'Expand sidebar' : 'Collapse sidebar'"
+    >
+      <nz-icon [nzType]="collapseIcon()" nzTheme="outline" class="text-xl" />
+    </button>
+  </div>
+
+  <ul class="py-5 flex-1">
     <li>
       <a
         class="text-white text-lg cursor-pointer block rounded px-2 py-1 focus:ring-2 focus:ring-gray-400 hover:text-black hover:bg-dove-gray-100 focus:text-black focus:bg-dove-gray-100 transition-colors duration-200"
         routerLink="translate"
-        title="Translate"
+        [attr.title]="isCollapsed() ? 'Translate' : null"
         aria-label="Translate"
-        >Translate</a
       >
+        @if (isCollapsed()) {
+          <span class="text-center block">T</span>
+        } @else {
+          <span>Translate</span>
+        }
+      </a>
     </li>
     <li>
       <a
         class="text-white text-lg cursor-pointer block rounded px-2 py-1 focus:ring-2 focus:ring-gray-400 hover:text-black hover:bg-dove-gray-100 focus:text-black focus:bg-dove-gray-100 transition-colors duration-200"
         routerLink="instructions"
-        title="Instructions"
+        [attr.title]="isCollapsed() ? 'Instructions' : null"
         aria-label="Instructions"
-        >Instructions</a
       >
+        @if (isCollapsed()) {
+          <span class="text-center block">I</span>
+        } @else {
+          <span>Instructions</span>
+        }
+      </a>
     </li>
     <li>
       <a
         class="text-white text-lg cursor-pointer block rounded px-2 py-1 focus:ring-2 focus:ring-gray-400 hover:text-black hover:bg-dove-gray-100 focus:text-black focus:bg-dove-gray-100 transition-colors duration-200"
         routerLink="favorites"
-        title="Favorites"
+        [attr.title]="isCollapsed() ? 'Favorites' : null"
         aria-label="Favorites"
-        >Fav translations</a
       >
+        @if (isCollapsed()) {
+          <span class="text-center block">F</span>
+        } @else {
+          <span>Fav translations</span>
+        }
+      </a>
     </li>
   </ul>
 </nav>
