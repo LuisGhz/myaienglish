@@ -6,7 +6,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { InstructionsApi } from '@transl/services/instructions-api';
 import { TranslateApi } from '@transl/services/translate-api';
-import { TranslateTextReq } from '../../../../models/translate-text-req.model';
+import { TranslateTextReq } from '@transl/models/translate-text-req.model';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
