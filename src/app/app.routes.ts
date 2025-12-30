@@ -1,25 +1,20 @@
 import { Routes } from '@angular/router';
+import { authChildGuard, authGuard } from './core/guards/auth-guard';
 
 export const routes: Routes = [
   {
-    path: 'translate',
-    loadComponent: () =>
-      import('./pages/translate-page/translate-page').then((m) => m.TranslatePage),
+    path: '',
+    canActivate: [authGuard],
+    canActivateChild: [authChildGuard],
+    loadChildren: () =>
+      import('./features/translation/translation.routes').then((m) => m.TRANSLATION_ROUTES),
   },
   {
-    path: 'instructions',
-    loadComponent: () =>
-      import('./pages/instructions-page/instructions-page').then((m) => m.InstructionsPage),
-  },
-  {
-    path: 'favorites',
-    loadComponent: () =>
-      import('./pages/fav-translations-page/fav-translations-page').then(
-        (m) => m.FavTranslationsPage
-      ),
+    path: 'auth',
+    loadChildren: () => import('./features/auth/auth.routes').then((m) => m.AUTH_ROUTES),
   },
   {
     path: '**',
-    redirectTo: 'translate',
+    redirectTo: '',
   },
 ];
