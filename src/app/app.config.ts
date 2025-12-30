@@ -20,6 +20,7 @@ import { withNgxsStoragePlugin } from '@ngxs/storage-plugin';
 import { provideStore } from '@ngxs/store';
 import { AuthStore } from './store/auth/auth.store';
 import { errorHandlerInterceptor } from '@core/interceptors';
+import { authInterceptor } from '@core/interceptors/auth-interceptor';
 
 registerLocaleData(en);
 
@@ -30,7 +31,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideNzI18n(en_US),
     provideAnimationsAsync(),
-    provideHttpClient(withInterceptors([errorHandlerInterceptor])),
+    provideHttpClient(withInterceptors([errorHandlerInterceptor, authInterceptor])),
     provideMarkdown({
       loader: HttpClient,
       mermaidOptions: {
