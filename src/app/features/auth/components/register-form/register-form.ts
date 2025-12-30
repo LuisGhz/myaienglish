@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthApi } from '@auth/services';
 import { passwordMatchValidator } from '@auth/validators/password-match.validator';
 import { strongPasswordValidator } from '@auth/validators/strong-password.validator';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -22,6 +23,8 @@ interface RegisterFormModel {
 })
 export class RegisterForm {
   readonly #form = inject(FormBuilder);
+  readonly #router = inject(Router);
+  readonly #authApi = inject(AuthApi);
   readonly formGroup = this.#form.group<RegisterFormModel>(
     {
       fullName: this.#form.control('', {
@@ -46,11 +49,20 @@ export class RegisterForm {
     },
   );
 
-  onSubmit(): void {
+  async onSubmit() {
     if (this.formGroup.valid) {
       const formValue = this.formGroup.value;
-      // Handle registration logic here
-      console.log('Registration data:', formValue);
+      try {
+        await this.#authApi.register({
+          fullName: formValue.fullName!,
+          email: formValue.email!,
+          password: formValue.password!,
+          confirmPassword: formValue.confirmPassword!,
+        });
+        this.#router.navigate(['/auth/login']);
+      } catch (error) {
+        console.error('Registration failed', error);
+      }
     }
   }
 }
