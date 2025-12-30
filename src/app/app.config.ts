@@ -22,6 +22,9 @@ import { AuthStore } from './store/auth/auth.store';
 import { errorHandlerInterceptor } from '@core/interceptors';
 import { authInterceptor } from '@core/interceptors/auth-interceptor';
 
+import { provideNzIcons } from 'ng-zorro-antd/icon';
+import { LogoutOutline } from '@ant-design/icons-angular/icons';
+
 registerLocaleData(en);
 
 export const appConfig: ApplicationConfig = {
@@ -30,6 +33,7 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideRouter(routes),
     provideNzI18n(en_US),
+    provideNzIcons([LogoutOutline]),
     provideAnimationsAsync(),
     provideHttpClient(withInterceptors([errorHandlerInterceptor, authInterceptor])),
     provideMarkdown({
