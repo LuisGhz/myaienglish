@@ -6,7 +6,6 @@ import { inject } from '@angular/core';
 export const authGuard: CanActivateFn = () => {
   const router = inject(Router);
   const isAuthenticated = select(AuthStore.isAuthenticated);
-  console.log('Auth Guard check:', isAuthenticated());
   if (!isAuthenticated()) {
     router.navigate(['/auth/login']);
     return false;
@@ -17,7 +16,6 @@ export const authGuard: CanActivateFn = () => {
 export const authChildGuard: CanActivateChildFn = () => {
   const router = inject(Router);
   const isAuthenticated = select(AuthStore.isAuthenticated);
-  console.log('Auth Guard check:', isAuthenticated());
   if (!isAuthenticated()) {
     router.navigate(['/auth/login']);
     return false;
