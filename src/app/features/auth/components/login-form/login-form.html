@@ -1,12 +1,45 @@
 <section>
-  <form class="flex flex-col gap-4 w-80">
+  <form class="flex flex-col gap-4 w-80" [formGroup]="form" (ngSubmit)="onSubmit()">
     <label class="flex flex-col gap-1 text-app">
       Email
-      <input nz-input type="email" placeholder="Enter your email" class="w-full" required />
+      <input
+        nz-input
+        formControlName="email"
+        type="email"
+        placeholder="Enter your email"
+        class="w-full"
+        required
+      />
+      <app-gen-form-error
+        [control]="form.controls.email"
+        key="required"
+        id="email-required-error"
+        message="Email is required"
+      />
+      <app-gen-form-error
+        [control]="form.controls.email"
+        key="email"
+        id="email-email-error"
+        message="Email is not valid"
+      />
     </label>
+
     <label class="flex flex-col gap-1 text-app">
       Password
-      <input nz-input type="password" placeholder="Enter your password" class="w-full" required />
+      <input
+        nz-input
+        formControlName="password"
+        type="password"
+        placeholder="Enter your password"
+        class="w-full"
+        required
+      />
+      <app-gen-form-error
+        [control]="form.controls.password"
+        key="required"
+        id="password-required-error"
+        message="Password is required"
+      />
     </label>
     <button
       type="submit"
