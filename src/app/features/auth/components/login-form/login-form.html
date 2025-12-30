@@ -1,14 +1,18 @@
 <section>
-  <form class="flex flex-col gap-4 w-80" [formGroup]="form" (ngSubmit)="onSubmit()">
-    <label class="flex flex-col gap-1 text-app">
+  <form class="flex flex-col gap-4 w-80" [formGroup]="form" (ngSubmit)="onSubmit()" aria-labelledby="login-form-title">
+    <h2 id="login-form-title" class="sr-only">Login Form</h2>
+    <label class="flex flex-col gap-1 text-app" for="email-input">
       Email
       <input
         nz-input
+        id="email-input"
         formControlName="email"
         type="email"
         placeholder="Enter your email"
         class="w-full"
         required
+        aria-describedby="email-required-error email-email-error"
+        autocomplete="email"
       />
       <app-gen-form-error
         [control]="form.controls.email"
@@ -24,15 +28,18 @@
       />
     </label>
 
-    <label class="flex flex-col gap-1 text-app">
+    <label class="flex flex-col gap-1 text-app" for="password-input">
       Password
       <input
         nz-input
+        id="password-input"
         formControlName="password"
         type="password"
         placeholder="Enter your password"
         class="w-full"
         required
+        aria-describedby="password-required-error"
+        autocomplete="current-password"
       />
       <app-gen-form-error
         [control]="form.controls.password"
@@ -44,6 +51,7 @@
     <button
       type="submit"
       class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 wcag-outline"
+      aria-label="Login to your account"
     >
       Login
     </button>
