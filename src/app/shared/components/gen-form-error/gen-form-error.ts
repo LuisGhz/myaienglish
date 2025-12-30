@@ -21,6 +21,7 @@ export class GenFormError {
   keys = input<string[]>();
   message = input<string>();
   messages = input<string[]>();
+  id = input<string>();
 
   constructor() {
     effect(() => {
