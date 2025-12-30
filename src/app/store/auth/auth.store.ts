@@ -17,6 +17,11 @@ export class AuthStore {
     return state.isAuthenticated;
   }
 
+  @Selector()
+  static token(state: AuthStoreModel): string | null {
+    return state.token;
+  }
+
   @Action(AuthActions.Login)
   login(ctx: StateContext<AuthStoreModel>, action: AuthActions.Login) {
     ctx.setState({
