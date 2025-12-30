@@ -1,14 +1,25 @@
-<form class="flex flex-col gap-4" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+<form
+  class="flex flex-col gap-4"
+  [formGroup]="formGroup"
+  (ngSubmit)="onSubmit()"
+  aria-labelledby="registerFormTitle"
+>
+  <h2 id="registerFormTitle" class="sr-only">Register Form</h2>
   <article class="flex flex-col">
+    <label for="fullName" class="sr-only">Full Name</label>
     <input
       class="w-80"
       type="text"
       nz-input
+      id="fullName"
       formControlName="fullName"
       placeholder="Enter your full name"
       autofocus
+      aria-required="true"
+      aria-describedby="fullNameError"
     />
     <app-gen-form-error
+      id="fullNameError"
       [control]="formGroup.controls.fullName"
       [keys]="['required', 'pattern']"
       message="Full name is required."
@@ -16,19 +27,25 @@
   </article>
 
   <article class="flex flex-col">
+    <label for="email" class="sr-only">Email</label>
     <input
       class="w-80"
       type="email"
       nz-input
+      id="email"
       formControlName="email"
       placeholder="Enter your email"
+      aria-required="true"
+      aria-describedby="emailError emailPatternError"
     />
     <app-gen-form-error
+      id="emailError"
       [control]="formGroup.controls.email"
       [keys]="['required', 'pattern']"
       message="Email is required."
     />
     <app-gen-form-error
+      id="emailPatternError"
       [control]="formGroup.controls.email"
       key="email"
       message="Please enter a valid email address."
@@ -36,19 +53,25 @@
   </article>
 
   <article class="flex flex-col">
+    <label for="password" class="sr-only">Password</label>
     <input
       class="w-80"
       type="password"
       nz-input
+      id="password"
       formControlName="password"
       placeholder="Enter your password"
+      aria-required="true"
+      aria-describedby="passwordError passwordWeakError"
     />
     <app-gen-form-error
+      id="passwordError"
       [control]="formGroup.controls.password"
       [keys]="['required', 'pattern']"
       message="Password is required."
     />
     <app-gen-form-error
+      id="passwordWeakError"
       [control]="formGroup.controls.password"
       key="weakPassword"
       [messages]="[
@@ -61,19 +84,25 @@
     />
   </article>
   <article class="flex flex-col">
+    <label for="confirmPassword" class="sr-only">Confirm Password</label>
     <input
       class="w-80"
       type="password"
       nz-input
+      id="confirmPassword"
       formControlName="confirmPassword"
       placeholder="Confirm your password"
+      aria-required="true"
+      aria-describedby="confirmPasswordError passwordMismatchError"
     />
     <app-gen-form-error
+      id="confirmPasswordError"
       [control]="formGroup.controls.confirmPassword"
       [keys]="['required', 'pattern']"
       message="Confirm password is required."
     />
     <app-gen-form-error
+      id="passwordMismatchError"
       [control]="formGroup.controls.confirmPassword"
       key="passwordMismatch"
       message="Passwords do not match."
@@ -84,6 +113,7 @@
       class="bg-gray-400 text-dark py-2 px-4 rounded hover:bg-gray-500 trans-c-200 wcag-outline"
       type="button"
       routerLink="/auth/login"
+      aria-label="Go back to login"
     >
       Go back
     </button>
@@ -91,6 +121,7 @@
       class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 trans-c-200 wcag-outline"
       type="submit"
       [disabled]="formGroup.invalid"
+      aria-label="Register new account"
     >
       Register
     </button>
