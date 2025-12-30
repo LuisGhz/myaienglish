@@ -1,13 +1,17 @@
-<nz-layout class="min-h-dvh bg-dove-gray-950">
-  <nz-sider
-    class="bg-dove-gray-950 border-e border-e-dove-gray-400"
-    [nzCollapsed]="isCollapsed()"
-    [nzWidth]="200"
-    [nzCollapsedWidth]="64"
-  >
-    <app-sider (collapsedChange)="onCollapsedChange($event)" />
-  </nz-sider>
-  <nz-content class="px-0.5 py-2 md:p-4">
-    <router-outlet />
-  </nz-content>
-</nz-layout>
+@if (isAuthenticated()) {
+  <nz-layout class="min-h-dvh bg-dove-gray-950">
+    <nz-sider
+      class="bg-dove-gray-950 border-e border-e-dove-gray-400"
+      [nzCollapsed]="isCollapsed()"
+      [nzWidth]="200"
+      [nzCollapsedWidth]="64"
+    >
+      <app-sider (collapsedChange)="onCollapsedChange($event)" />
+    </nz-sider>
+    <nz-content class="px-0.5 py-2 md:p-4">
+      <router-outlet />
+    </nz-content>
+  </nz-layout>
+} @else {
+  <router-outlet />
+}
