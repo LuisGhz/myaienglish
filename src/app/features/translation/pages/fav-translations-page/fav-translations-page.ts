@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { TranslateApi } from '../../../../services/translate-api';
+import { TranslateApi } from '@transl/services/translate-api';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { MarkdownModule } from 'ngx-markdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';

@@ -4,8 +4,8 @@ import { rxResource } from '@angular/core/rxjs-interop';
 import { MarkdownModule } from 'ngx-markdown';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-import { InstructionsApi } from '../../../../services/instructions-api';
-import { TranslateApi } from '../../../../services/translate-api';
+import { InstructionsApi } from '@transl/services/instructions-api';
+import { TranslateApi } from '@transl/services/translate-api';
 import { TranslateTextReq } from '../../../../models/translate-text-req.model';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -43,7 +43,7 @@ export class TranslatePage {
   translatedText = signal<string>('');
   isLoading = signal<boolean>(false);
   tokenInfo = signal<{ inputTokens: number; outputTokens: number; totalTokens: number } | null>(
-    null
+    null,
   );
   isFavoriteClicked = signal<boolean>(false);
 

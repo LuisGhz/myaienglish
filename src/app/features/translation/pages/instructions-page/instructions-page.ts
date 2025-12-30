@@ -18,7 +18,7 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import { InstructionsApi } from '../../../../services/instructions-api';
+import { InstructionsApi } from '@transl/services/instructions-api';
 import { Instruction } from '../../../../models/instruction';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
@@ -106,7 +106,7 @@ export class InstructionsPage {
       .pipe(
         debounceTime(debounceTimeValue),
         distinctUntilChanged(),
-        takeUntilDestroyed(this.#destroyRef)
+        takeUntilDestroyed(this.#destroyRef),
       )
       .subscribe((name) => {
         const id = formGroup.controls.id.value;
@@ -120,7 +120,7 @@ export class InstructionsPage {
       .pipe(
         debounceTime(debounceTimeValue),
         distinctUntilChanged(),
-        takeUntilDestroyed(this.#destroyRef)
+        takeUntilDestroyed(this.#destroyRef),
       )
       .subscribe((content) => {
         const id = formGroup.controls.id.value;
@@ -146,11 +146,11 @@ export class InstructionsPage {
   #uniqueNameValidator(control: AbstractControl): ValidationErrors | null {
     const currentName = control.value;
     const currentFormGroup = this.instructionsForm.controls.find(
-      (group) => group.controls.name === control
+      (group) => group.controls.name === control,
     );
 
     const isDuplicate = this.instructionsForm.controls.some(
-      (group) => group !== currentFormGroup && group.controls.name.value === currentName
+      (group) => group !== currentFormGroup && group.controls.name.value === currentName,
     );
 
     return isDuplicate ? { uniqueName: true } : null;
