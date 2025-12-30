@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { RegisterReqModel, RegisterResModel } from '@auth/models';
+import { LoginReqModel, LoginResModel, RegisterReqModel, RegisterResModel } from '@auth/models';
 import { HttpService } from '@core/services/http.service';
 
 @Injectable({
@@ -8,5 +8,9 @@ import { HttpService } from '@core/services/http.service';
 export class AuthApi extends HttpService {
   register(data: RegisterReqModel) {
     return this.postP<RegisterResModel, RegisterReqModel>('/auth/register', data);
+  }
+
+  login(data: LoginReqModel) {
+    return this.postP<LoginResModel, LoginReqModel>('/auth/login', data);
   }
 }
