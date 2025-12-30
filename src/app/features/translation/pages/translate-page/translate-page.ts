@@ -4,9 +4,9 @@ import { rxResource } from '@angular/core/rxjs-interop';
 import { MarkdownModule } from 'ngx-markdown';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-import { InstructionsApi } from '../../services/instructions-api';
-import { TranslateApi } from '../../services/translate-api';
-import { TranslateTextReq } from '../../models/translate-text-req.model';
+import { InstructionsApi } from '../../../../services/instructions-api';
+import { TranslateApi } from '../../../../services/translate-api';
+import { TranslateTextReq } from '../../../../models/translate-text-req.model';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
