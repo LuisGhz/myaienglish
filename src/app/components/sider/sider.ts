@@ -8,6 +8,7 @@ import {
   signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { AuthApi } from '@auth/services';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @Component({
@@ -17,6 +18,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Sider {
+  readonly #authApi = inject(AuthApi);
   private readonly MOBILE_BREAKPOINT = 768;
 
   readonly isCollapsed = signal(false);
@@ -52,5 +54,9 @@ export class Sider {
 
   toggleCollapse(): void {
     this.isCollapsed.update((collapsed) => !collapsed);
+  }
+
+  async logout() {
+    await this.#authApi.logout();
   }
 }
