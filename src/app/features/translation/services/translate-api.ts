@@ -13,9 +13,8 @@ export class TranslateApi {
   #httpClient = inject(HttpClient);
   #baseUrl = `${environment.apiUrl}/translate`;
 
-  translateText({ instructionId, textToTranslate, context }: TranslateTextReq) {
+  translateText({ textToTranslate, context }: TranslateTextReq) {
     return this.#httpClient.post<TranslateTextRes>(this.#baseUrl, {
-      instructionId,
       textToTranslate,
       context,
     });

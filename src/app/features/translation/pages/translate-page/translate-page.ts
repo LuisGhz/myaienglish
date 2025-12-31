@@ -9,6 +9,8 @@ import { TranslateApi } from '@transl/services/translate-api';
 import { TranslateTextReq } from '@transl/models/translate-text-req.model';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { of } from 'rxjs';
+import { TranslateTextRes } from '@transl/models/translate-text-res.model';
 
 @Component({
   selector: 'app-translate-page',
@@ -31,29 +33,25 @@ export class TranslatePage {
 
   $instructions = rxResource({
     defaultValue: [],
-    stream: () => this.#instructionsApi.getInstructions(),
+    stream: () => of([]),
   });
 
   translateForm = this.#formBuilder.group({
-    instructionId: ['', Validators.required],
+    instructionId: [''],
     context: [''],
     textToTranslate: ['', Validators.required],
   });
 
-  translatedText = signal<string>('');
+  translatedText = signal<TranslateTextRes | null>(null);
   isLoading = signal<boolean>(false);
-  tokenInfo = signal<{ inputTokens: number; outputTokens: number; totalTokens: number } | null>(
-    null,
-  );
   isFavoriteClicked = signal<boolean>(false);
 
   onTranslate(): void {
     if (this.translateForm.invalid || this.isLoading()) return;
 
-    const { instructionId, context, textToTranslate } = this.translateForm.getRawValue();
+    const { context, textToTranslate } = this.translateForm.getRawValue();
 
     const request: TranslateTextReq = {
-      instructionId: instructionId || '',
       textToTranslate: textToTranslate || '',
       context: context || undefined,
     };
@@ -61,26 +59,13 @@ export class TranslatePage {
     this.isLoading.set(true);
     this.#translateApi.translateText(request).subscribe({
       next: (response) => {
-        this.translatedText.set(response.translatedText);
-        this.tokenInfo.set({
-          inputTokens: response.inputTokens,
-          outputTokens: response.outputTokens,
-          totalTokens: response.totalTokens,
-        });
+        if (response) this.translatedText.set(response);
+
         this.isLoading.set(false);
       },
       error: () => {
         this.isLoading.set(false);
       },
     });
-  }
-
-  addFavoriteTranslation(): void {
-    this.isFavoriteClicked.set(true);
-    setTimeout(() => this.isFavoriteClicked.set(false), 600);
-
-    const originalText = this.translateForm.get('textToTranslate')?.value!;
-    const translatedText = this.translatedText();
-    this.#translateApi.addFavoriteTranslation({ originalText, translatedText }).subscribe();
   }
 }

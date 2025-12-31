@@ -1,6 +1,7 @@
 export interface TranslateTextRes {
-  translatedText: string;
-  inputTokens: number;
-  outputTokens: number;
-  totalTokens: number;
+  grammarFix: string;
+  informalWay: string;
+  semiFormalWay: string;
+  formalWay: string;
+  politeWay: string;
 }
