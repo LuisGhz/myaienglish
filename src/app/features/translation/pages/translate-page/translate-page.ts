@@ -27,14 +27,8 @@ import { TranslateTextRes } from '@transl/models/translate-text-res.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TranslatePage {
-  #instructionsApi = inject(InstructionsApi);
   #translateApi = inject(TranslateApi);
   #formBuilder = inject(FormBuilder);
-
-  $instructions = rxResource({
-    defaultValue: [],
-    stream: () => of([]),
-  });
 
   translateForm = this.#formBuilder.group({
     instructionId: [''],

@@ -15,11 +15,4 @@ export const TRANSLATION_ROUTES: Routes = [
     loadComponent: () =>
       import('./pages/instructions-page/instructions-page').then((m) => m.InstructionsPage),
   },
-  {
-    path: 'favorites',
-    loadComponent: () =>
-      import('./pages/fav-translations-page/fav-translations-page').then(
-        (m) => m.FavTranslationsPage,
-      ),
-  },
 ];

@@ -19,16 +19,4 @@ export class TranslateApi {
       context,
     });
   }
-
-  getFavoriteTranslations() {
-    return this.#httpClient.get<FavTranslation[]>(`${this.#baseUrl}/favorites`);
-  }
-
-  addFavoriteTranslation(translation: AddFavTranslationReq) {
-    return this.#httpClient.post(`${this.#baseUrl}/favorites`, translation);
-  }
-
-  removeFavoriteTranslation(id: string) {
-    return this.#httpClient.delete(`${this.#baseUrl}/favorites/${id}/delete`);
-  }
 }
