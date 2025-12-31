@@ -1,7 +1,8 @@
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { AuthStoreModel } from './models';
-import { AuthActions } from './auth.actions';
 import { Injectable } from '@angular/core';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { jwtDecode } from 'jwt-decode';
+import { AuthStoreModel, JwtPayloadModel } from './models';
+import { AuthActions } from './auth.actions';
 
 @State<AuthStoreModel>({
   name: 'auth',
@@ -20,6 +21,13 @@ export class AuthStore {
   @Selector()
   static token(state: AuthStoreModel): string | null {
     return state.token;
+  }
+
+  @Selector()
+  static email(state: AuthStoreModel): string | null {
+    if (!state.token) return null;
+    const payload = jwtDecode<JwtPayloadModel>(state.token);
+    return payload.email;
   }
 
   @Action(AuthActions.Login)
