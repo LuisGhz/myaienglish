@@ -1,25 +1,43 @@
 <main class="h-full flex flex-col items-center gap-4" [formGroup]="translateForm">
-  <section class="flex flex-col gap-2 w-1/2">
-    <label class="text-white" for="text-to-translate">Text to translate:</label>
+  <section class="w-1/2 max-w-md min-w-80">
+    <label class="sr-only" for="text-to-translate" id="text-to-translate-label"
+      >Text to translate:</label
+    >
     <textarea
+      class=""
       formControlName="textToTranslate"
       id="text-to-translate"
+      aria-labelledby="text-to-translate-label"
+      aria-describedby="text-to-translate-desc"
       nz-input
       [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+      placeholder="Text to enhance"
     ></textarea>
+    <span id="text-to-translate-desc" class="sr-only"
+      >Enter the text you want to translate or enhance.</span
+    >
   </section>
-  <section class="w-1/2">
-    <label class="text-white" for="additional-context">Additional context</label>
+  <section class="w-1/2 max-w-md min-w-80">
+    <label class="sr-only" for="additional-context" id="additional-context-label"
+      >Additional context</label
+    >
     <textarea
+      class=""
       formControlName="context"
       id="additional-context"
+      aria-labelledby="additional-context-label"
+      aria-describedby="additional-context-desc"
       nz-input
       [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+      placeholder="You can provide any additional context that might help improve the resultm e.g., ''"
     ></textarea>
+    <span id="additional-context-desc" class="sr-only"
+      >Provide extra information to help improve the translation result.</span
+    >
   </section>
   <section class="w-full md:w-1/2 relative">
     @if (translatedText() !== null) {
-      <ul class="text-app">
+      <ul class="text-app" aria-live="polite" aria-atomic="true">
         <li>
           <span class="font-semibold me-1">Grammar fix:</span> {{ translatedText()!.grammarFix }}
         </li>
@@ -42,10 +60,11 @@
   </section>
   <section class="flex justify-center">
     <button
+      class="wcag-outline w-40"
+      type="button"
+      aria-label="Translate text"
       (click)="onTranslate()"
       [disabled]="translateForm.invalid"
-      class="wcag-outline w-40"
-      aria-label="Translate text"
       nz-button
       nzType="primary"
       [nzLoading]="isLoading()"
