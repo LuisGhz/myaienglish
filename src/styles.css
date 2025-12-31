@@ -11,11 +11,23 @@
     @apply !text-gray-900 dark:!text-gray-100;
   }
 
+  .text-app-hover {
+    @apply hover:!text-gray-800 dark:hover:!text-gray-300;
+  }
+
   .wcag-outline {
     @apply focus:outline-2 dark:focus:outline-gray-200 focus:outline-dove-gray-900;
   }
 
   .trans-c-200 {
     @apply transition-colors duration-200;
+  }
+
+  .app-link {
+    @apply text-sky-700 hocus:text-sky-800 dark:text-sky-300 dark:hocus:text-sky-200 font-semibold trans-c-200;
+  }
+
+  .app-link-bg-hover {
+    @apply hocus:bg-sky-50 dark:hocus:bg-dove-gray-800;
   }
 }

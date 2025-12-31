@@ -13,7 +13,7 @@
   <ul class="py-5 flex-1">
     <li>
       <a
-        class="text-white text-lg cursor-pointer block rounded px-2 py-1 focus:ring-2 focus:ring-gray-400 hover:text-black hover:bg-dove-gray-100 focus:text-black focus:bg-dove-gray-100 transition-colors duration-200"
+        class="app-link app-link-bg-hover text-lg cursor-pointer block rounded px-2 py-1 focus:ring-2 wcag-outline"
         routerLink="translate"
         [attr.title]="isCollapsed() ? 'Translate' : null"
         aria-label="Translate"
@@ -27,29 +27,15 @@
     </li>
     <li>
       <a
-        class="text-white text-lg cursor-pointer block rounded px-2 py-1 focus:ring-2 focus:ring-gray-400 hover:text-black hover:bg-dove-gray-100 focus:text-black focus:bg-dove-gray-100 transition-colors duration-200"
-        routerLink="instructions"
-        [attr.title]="isCollapsed() ? 'Instructions' : null"
-        aria-label="Instructions"
+        class="app-link app-link-bg-hover text-lg cursor-pointer block rounded px-2 py-1 focus:ring-2 wcag-outline"
+        routerLink="translate"
+        [attr.title]="isCollapsed() ? 'Translate' : null"
+        aria-label="Translate"
       >
         @if (isCollapsed()) {
-          <span class="text-center block">I</span>
+          <span class="text-center block">T</span>
         } @else {
-          <span>Instructions</span>
-        }
-      </a>
-    </li>
-    <li>
-      <a
-        class="text-white text-lg cursor-pointer block rounded px-2 py-1 focus:ring-2 focus:ring-gray-400 hover:text-black hover:bg-dove-gray-100 focus:text-black focus:bg-dove-gray-100 transition-colors duration-200"
-        routerLink="favorites"
-        [attr.title]="isCollapsed() ? 'Favorites' : null"
-        aria-label="Favorites"
-      >
-        @if (isCollapsed()) {
-          <span class="text-center block">F</span>
-        } @else {
-          <span>Fav translations</span>
+          <span>VS</span>
         }
       </a>
     </li>
