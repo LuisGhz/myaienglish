@@ -1,46 +1,44 @@
-<main class="h-full flex flex-col gap-4" [formGroup]="translateForm">
-  <section>
+<main class="h-full flex flex-col items-center gap-4" [formGroup]="translateForm">
+  <section class="flex flex-col gap-2 w-1/2">
+    <label class="text-white" for="text-to-translate">Text to translate:</label>
+    <textarea
+      formControlName="textToTranslate"
+      id="text-to-translate"
+      nz-input
+      [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+    ></textarea>
+  </section>
+  <section class="w-1/2">
     <label class="text-white" for="additional-context">Additional context</label>
     <textarea
       formControlName="context"
       id="additional-context"
       nz-input
-      [nzAutosize]="{ minRows: 3, maxRows: 3 }"
+      [nzAutosize]="{ minRows: 3, maxRows: 5 }"
     ></textarea>
   </section>
-  <section class="flex flex-col gap-2">
-    <div class="w-full md:w-1/2">
-      <label class="text-white" for="text-to-translate">Text to translate:</label>
-      <textarea
-        formControlName="textToTranslate"
-        id="text-to-translate"
-        nz-input
-        [nzAutosize]="{ minRows: 4, maxRows: 4 }"
-      ></textarea>
-    </div>
-    <div class="w-full md:w-1/2 relative">
-      @if (translatedText() !== null) {
-        <ul class="text-app">
-          <li>
-            <span class="font-semibold me-1">Grammar fix:</span> {{ translatedText()!.grammarFix }}
-          </li>
-          <li>
-            <span class="font-semibold me-1">Informal way:</span>
-            {{ translatedText()!.informalWay }}
-          </li>
-          <li>
-            <span class="font-semibold me-1">Semi-formal way:</span>
-            {{ translatedText()!.semiFormalWay }}
-          </li>
-          <li>
-            <span class="font-semibold me-1">Formal way:</span> {{ translatedText()!.formalWay }}
-          </li>
-          <li>
-            <span class="font-semibold me-1">Polite way:</span> {{ translatedText()!.politeWay }}
-          </li>
-        </ul>
-      }
-    </div>
+  <section class="w-full md:w-1/2 relative">
+    @if (translatedText() !== null) {
+      <ul class="text-app">
+        <li>
+          <span class="font-semibold me-1">Grammar fix:</span> {{ translatedText()!.grammarFix }}
+        </li>
+        <li>
+          <span class="font-semibold me-1">Informal way:</span>
+          {{ translatedText()!.informalWay }}
+        </li>
+        <li>
+          <span class="font-semibold me-1">Semi-formal way:</span>
+          {{ translatedText()!.semiFormalWay }}
+        </li>
+        <li>
+          <span class="font-semibold me-1">Formal way:</span> {{ translatedText()!.formalWay }}
+        </li>
+        <li>
+          <span class="font-semibold me-1">Polite way:</span> {{ translatedText()!.politeWay }}
+        </li>
+      </ul>
+    }
   </section>
   <section class="flex justify-center">
     <button
