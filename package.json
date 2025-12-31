@@ -36,6 +36,7 @@
     "@ngxs/hmr-plugin": "20.1.0",
     "@ngxs/storage-plugin": "20.1.0",
     "@ngxs/store": "20.1.0",
+    "jwt-decode": "^4.0.0",
     "marked": "16.4.1",
     "ng-zorro-antd": "^20.3.1",
     "ngx-markdown": "20.1.0",
