@@ -35,41 +35,38 @@
       >Provide extra information to help improve the translation result.</span
     >
   </section>
-  <section class="w-full md:w-1/2 relative">
-    @if (translatedText() !== null) {
-      <ul class="text-app" aria-live="polite" aria-atomic="true">
-        <li>
-          <span class="font-semibold me-1">Grammar fix:</span> {{ translatedText()!.grammarFix }}
-        </li>
-        <li>
-          <span class="font-semibold me-1">Informal way:</span>
-          {{ translatedText()!.informalWay }}
-        </li>
-        <li>
-          <span class="font-semibold me-1">Semi-formal way:</span>
-          {{ translatedText()!.semiFormalWay }}
-        </li>
-        <li>
-          <span class="font-semibold me-1">Formal way:</span> {{ translatedText()!.formalWay }}
-        </li>
-        <li>
-          <span class="font-semibold me-1">Polite way:</span> {{ translatedText()!.politeWay }}
-        </li>
-      </ul>
-    }
-  </section>
-  <section class="flex justify-center">
+  <section class="flex justify-between gap-4 w-1/2 max-w-md min-w-80">
+    <section class="flex-1">
+      @if (translatedText() !== null) {
+        <ul class="text-app" aria-live="polite" aria-atomic="true">
+          <li>
+            <span class="font-semibold me-1">Grammar fix:</span> {{ translatedText()!.grammarFix }}
+          </li>
+          <li>
+            <span class="font-semibold me-1">Informal way:</span>
+            {{ translatedText()!.informalWay }}
+          </li>
+          <li>
+            <span class="font-semibold me-1">Semi-formal way:</span>
+            {{ translatedText()!.semiFormalWay }}
+          </li>
+          <li>
+            <span class="font-semibold me-1">Formal way:</span> {{ translatedText()!.formalWay }}
+          </li>
+          <li>
+            <span class="font-semibold me-1">Polite way:</span> {{ translatedText()!.politeWay }}
+          </li>
+        </ul>
+      }
+    </section>
     <button
-      class="wcag-outline w-40"
+      class="wcag-outline w-14 h-14 text-app bg-primary hover:bg-primary-hover disabled:bg-blue-400 disabled:cursor-not-allowed flex items-center justify-center gap-2 px-4 py-2 text-2xl font-medium bg-blue-500 hover:bg-blue-600 rounded-full trans-c-200"
       type="button"
-      aria-label="Translate text"
+      aria-label="Enhance text"
       (click)="onTranslate()"
       [disabled]="translateForm.invalid"
-      nz-button
-      nzType="primary"
-      [nzLoading]="isLoading()"
     >
-      {{ isLoading() ? 'Translating...' : 'Translate' }}
+      <nz-icon nzType="translation" nzTheme="outline" />
     </button>
   </section>
 </main>
