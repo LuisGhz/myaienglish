@@ -29,10 +29,11 @@
       aria-describedby="additional-context-desc"
       nz-input
       [nzAutosize]="{ minRows: 3, maxRows: 5 }"
-      placeholder="You can provide any additional context that might help improve the resultm e.g., ''"
+      placeholder="You can provide any additional context that might help improve the resultm e.g., 'I'm waiting a call from my boss'"
     ></textarea>
     <span id="additional-context-desc" class="sr-only"
-      >Provide extra information to help improve the translation result.</span
+      >You can provide any additional context that might help improve the resultm e.g., 'I'm waiting
+      a call from my boss'</span
     >
   </section>
   <section class="flex justify-between gap-4 w-1/2 max-w-md min-w-80">
@@ -60,7 +61,7 @@
       }
     </section>
     <button
-      class="wcag-outline w-14 h-14 text-app bg-primary hover:bg-primary-hover disabled:bg-blue-400 disabled:cursor-not-allowed flex items-center justify-center gap-2 px-4 py-2 text-2xl font-medium bg-blue-500 hocus:bg-blue-600 rounded-full trans-c-200"
+      class="wcag-outline w-14 h-14 text-white bg-primary hover:bg-primary-hover disabled:bg-blue-400 disabled:cursor-not-allowed flex items-center justify-center gap-2 px-4 py-2 text-2xl font-medium bg-blue-500 hocus:bg-blue-600 rounded-full trans-c-200"
       type="button"
       aria-label="Enhance text"
       (click)="onTranslate()"
