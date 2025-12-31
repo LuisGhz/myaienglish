@@ -12,7 +12,7 @@
   }
 
   .wcag-outline {
-    @apply focus:outline-2 focus:outline-gray-200;
+    @apply focus:outline-2 dark:focus:outline-gray-200 focus:outline-dove-gray-900;
   }
 
   .trans-c-200 {
