@@ -16,7 +16,7 @@ import { MERMAID_OPTIONS, provideMarkdown } from 'ngx-markdown';
 import { provideServiceWorker } from '@angular/service-worker';
 import { withNgxsReduxDevtoolsPlugin } from '@ngxs/devtools-plugin';
 import { withNgxsFormPlugin } from '@ngxs/form-plugin';
-import { withNgxsStoragePlugin } from '@ngxs/storage-plugin';
+import { withNgxsStoragePlugin, StorageEngine, STORAGE_ENGINE } from '@ngxs/storage-plugin';
 import { provideStore } from '@ngxs/store';
 import { AuthStore } from './store/auth/auth.store';
 import { errorHandlerInterceptor } from '@core/interceptors';
@@ -26,6 +26,32 @@ import { provideNzIcons } from 'ng-zorro-antd/icon';
 import { LogoutOutline } from '@ant-design/icons-angular/icons';
 
 registerLocaleData(en);
+
+class SuffixStorageEngine implements StorageEngine {
+  #prefix = 'myaienglish__';
+
+  getItem(key: string) {
+    const raw = localStorage.getItem(this.#prefix + key);
+    return raw ? JSON.parse(raw) : null;
+  }
+
+  setItem(key: string, value: any) {
+    localStorage.setItem(this.#prefix + key, JSON.stringify(value));
+  }
+
+  removeItem(key: string) {
+    localStorage.removeItem(this.#prefix + key);
+  }
+
+  clear() {
+    for (let i = localStorage.length - 1; i >= 0; i--) {
+      const k = localStorage.key(i);
+      if (k?.startsWith(this.#prefix)) {
+        localStorage.removeItem(k);
+      }
+    }
+  }
+}
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -58,5 +84,9 @@ export const appConfig: ApplicationConfig = {
         keys: ['auth'],
       }),
     ),
+    {
+      provide: STORAGE_ENGINE,
+      useClass: SuffixStorageEngine,
+    },
   ],
 };
