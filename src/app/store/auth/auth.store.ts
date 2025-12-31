@@ -37,4 +37,19 @@ export class AuthStore {
       token: action.payload,
     });
   }
+
+  @Action(AuthActions.Logout)
+  logout(ctx: StateContext<AuthStoreModel>) {
+    ctx.setState({
+      isAuthenticated: false,
+      token: null,
+    });
+  }
+
+  @Action(AuthActions.UpdateToken)
+  updateToken(ctx: StateContext<AuthStoreModel>, action: AuthActions.UpdateToken) {
+    ctx.patchState({
+      token: action.payload,
+    });
+  }
 }
