@@ -19,12 +19,12 @@ import { withNgxsFormPlugin } from '@ngxs/form-plugin';
 import { withNgxsStoragePlugin, StorageEngine, STORAGE_ENGINE } from '@ngxs/storage-plugin';
 import { provideStore } from '@ngxs/store';
 import { AuthStore } from './store/auth/auth.store';
+import { AppStore } from '@st/app/app.store';
 import { errorHandlerInterceptor } from '@core/interceptors';
 import { authInterceptor } from '@core/interceptors/auth-interceptor';
 
 import { provideNzIcons } from 'ng-zorro-antd/icon';
 import { LogoutOutline } from '@ant-design/icons-angular/icons';
-
 registerLocaleData(en);
 
 class SuffixStorageEngine implements StorageEngine {
@@ -77,11 +77,11 @@ export const appConfig: ApplicationConfig = {
       registrationStrategy: 'registerWhenStable:30000',
     }),
     provideStore(
-      [AuthStore],
+      [AuthStore, AppStore],
       withNgxsReduxDevtoolsPlugin(),
       withNgxsFormPlugin(),
       withNgxsStoragePlugin({
-        keys: ['auth'],
+        keys: ['auth', 'app'],
       }),
     ),
     {
