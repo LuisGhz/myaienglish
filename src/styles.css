@@ -16,7 +16,11 @@
   }
 
   .wcag-outline {
-    @apply focus:outline-2 dark:focus:outline-gray-200 focus:outline-dove-gray-900;
+    @apply focus:!outline-2 dark:focus:!outline-gray-200 focus:!outline-dove-gray-900;
+  }
+
+  .wcag-ring {
+    @apply focus:!ring-2 dark:focus:!ring-gray-200 focus:!ring-dove-gray-900;
   }
 
   .trans-c-200 {
