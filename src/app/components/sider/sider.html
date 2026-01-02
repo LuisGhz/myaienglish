@@ -6,15 +6,15 @@
       aria-controls="sider-nav"
       [attr.aria-expanded]="!isCollapsed()"
     >
-      <nz-icon nzType="left" nzTheme="outline" class="text-xl" />
-      <span class="sr-only">Toggle navigation</span>
+      <nz-icon class="text-xl" nzType="menu-fold" nzTheme="outline" />
+      <span class="sr-only">Collapse menu</span>
     </button>
   </div>
 
   <ul id="sider-nav" class="py-5 flex-1" [attr.aria-hidden]="isCollapsed()">
     <li>
       <a
-        class="app-link app-link-bg-hover text-lg cursor-pointer block rounded px-2 py-1 focus:ring-2 wcag-outline"
+        class="app-link app-link-bg-hover text-lg cursor-pointer block rounded px-2 py-1 wcag-ring"
         routerLink="translate"
         [attr.title]="isCollapsed() ? 'Translate' : null"
         aria-label="Translate"
@@ -25,7 +25,7 @@
     </li>
     <li>
       <a
-        class="app-link app-link-bg-hover text-lg cursor-pointer block rounded px-2 py-1 focus:ring-2 wcag-outline"
+        class="app-link app-link-bg-hover text-lg cursor-pointer block rounded px-2 py-1 wcag-ring"
         routerLink="translate"
         [attr.title]="isCollapsed() ? 'Translate' : null"
         aria-label="Translate"
@@ -37,7 +37,7 @@
   </ul>
   <ul class="mb-3 p-2 border-t border-dove-gray-200 text-app flex justify-end wcag-outline">
     <li>
-      <button class="cursor-pointer flex gap-2 p-0.5" type="button" (click)="logout()">
+      <button class="cursor-pointer flex gap-2 p-0.5 wcag-outline" type="button" (click)="logout()">
         <nz-icon class="text-lg" nzType="logout" nzTheme="outline" />
         <span>Logout</span>
       </button>
