@@ -1,12 +1,12 @@
 @if (isAuthenticated()) {
   <nz-layout class="min-h-dvh bg-app">
     <nz-sider
-      class="bg-app border-e border-e-dove-gray-400"
+      class="bg-app border-e border-e-dove-gray-400 static md:relative"
+      [nzCollapsedWidth]="collapsedWidth()"
       [nzCollapsed]="isCollapsed()"
-      [nzWidth]="200"
-      [nzCollapsedWidth]="64"
+      [nzWidth]="expandedWidth()"
     >
-      <app-sider (collapsedChange)="onCollapsedChange($event)" />
+      <app-sider />
     </nz-sider>
     <nz-content class="px-0.5 py-2 md:p-4">
       <router-outlet />

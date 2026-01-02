@@ -1,28 +1,26 @@
-<nav class="h-full flex flex-col">
+<nav role="navigation" aria-label="Main navigation" class="h-full flex flex-col">
   <div class="flex justify-end p-2">
     <button
       (click)="toggleCollapse()"
       class="text-app text-app-hover rounded p-1 trans-c-200 wcag-outline"
-      [attr.aria-label]="isCollapsed() ? 'Expand sidebar' : 'Collapse sidebar'"
-      [attr.title]="isCollapsed() ? 'Expand sidebar' : 'Collapse sidebar'"
+      aria-controls="sider-nav"
+      [attr.aria-expanded]="!isCollapsed()"
     >
-      <nz-icon [nzType]="collapseIcon()" nzTheme="outline" class="text-xl" />
+      <nz-icon nzType="left" nzTheme="outline" class="text-xl" />
+      <span class="sr-only">Toggle navigation</span>
     </button>
   </div>
 
-  <ul class="py-5 flex-1">
+  <ul id="sider-nav" class="py-5 flex-1" [attr.aria-hidden]="isCollapsed()">
     <li>
       <a
         class="app-link app-link-bg-hover text-lg cursor-pointer block rounded px-2 py-1 focus:ring-2 wcag-outline"
         routerLink="translate"
         [attr.title]="isCollapsed() ? 'Translate' : null"
         aria-label="Translate"
+        [attr.tabindex]="isCollapsed() ? -1 : null"
       >
-        @if (isCollapsed()) {
-          <span class="text-center block">T</span>
-        } @else {
-          <span>Translate</span>
-        }
+        <span>Translate</span>
       </a>
     </li>
     <li>
@@ -31,12 +29,9 @@
         routerLink="translate"
         [attr.title]="isCollapsed() ? 'Translate' : null"
         aria-label="Translate"
+        [attr.tabindex]="isCollapsed() ? -1 : null"
       >
-        @if (isCollapsed()) {
-          <span class="text-center block">T</span>
-        } @else {
-          <span>VS</span>
-        }
+        <span>VS</span>
       </a>
     </li>
   </ul>

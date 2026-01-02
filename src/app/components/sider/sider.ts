@@ -9,6 +9,9 @@ import {
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthApi } from '@auth/services';
+import { dispatch, select } from '@ngxs/store';
+import { AppActions } from '@st/app/app.actions';
+import { AppStore } from '@st/app/app.store';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @Component({
@@ -19,41 +22,13 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 })
 export class Sider {
   readonly #authApi = inject(AuthApi);
-  private readonly MOBILE_BREAKPOINT = 768;
+  readonly isCollapsed = select(AppStore.isMenuCollapsed);
+  readonly #collapse = dispatch(AppActions.CollapseMenu);
 
-  readonly isCollapsed = signal(false);
   readonly isMobile = signal(false);
-  readonly collapsedChange = output<boolean>();
-
-  readonly collapseIcon = computed(() => (this.isCollapsed() ? 'right' : 'left'));
-
-  constructor() {
-    // Initialize mobile state
-    this.checkMobileView();
-
-    // Listen to window resize
-    if (typeof window !== 'undefined') {
-      window.addEventListener('resize', () => this.checkMobileView());
-    }
-
-    // Emit collapsed state changes
-    effect(() => {
-      this.collapsedChange.emit(this.isCollapsed());
-    });
-  }
-
-  private checkMobileView(): void {
-    if (typeof window === 'undefined') return;
-
-    const mobile = window.innerWidth < this.MOBILE_BREAKPOINT;
-    this.isMobile.set(mobile);
-
-    // Auto-collapse on mobile, auto-expand on desktop
-    this.isCollapsed.set(mobile);
-  }
 
   toggleCollapse(): void {
-    this.isCollapsed.update((collapsed) => !collapsed);
+    this.#collapse();
   }
 
   async logout() {

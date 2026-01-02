@@ -1,9 +1,12 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { RouterOutlet } from '@angular/router';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { Sider } from './components/sider/sider';
-import { select } from '@ngxs/store';
+import { dispatch, select } from '@ngxs/store';
 import { AuthStore } from './store/auth/auth.store';
+import { AppStore } from '@st/app/app.store';
+import { AppActions } from '@st/app/app.actions';
 
 @Component({
   selector: 'app-root',
@@ -12,11 +15,26 @@ import { AuthStore } from './store/auth/auth.store';
   styleUrl: './app.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class App {
-  readonly isCollapsed = signal(false);
+export class App implements OnInit {
+  readonly #breakpointObserver = inject(BreakpointObserver);
+  readonly #collapse = dispatch(AppActions.CollapseMenu);
+  readonly #expand = dispatch(AppActions.ExpandMenu);
+  readonly #updateIsMobile = dispatch(AppActions.UpdateIsMobile);
+  readonly #mobileQuery = '(max-width: 991px)';
+  readonly isCollapsed = select(AppStore.isMenuCollapsed);
   readonly isAuthenticated = select(AuthStore.isAuthenticated);
+  readonly collapsedWidth = signal(0);
+  readonly expandedWidth = signal(200);
 
-  onCollapsedChange(collapsed: boolean): void {
-    this.isCollapsed.set(collapsed);
+  ngOnInit(): void {
+    this.#breakpointObserver.observe(this.#mobileQuery).subscribe((result) => {
+      if (result.matches) {
+        this.#updateIsMobile(true);
+        this.#collapse();
+      } else {
+        this.#updateIsMobile(false);
+        this.#expand();
+      }
+    });
   }
 }
