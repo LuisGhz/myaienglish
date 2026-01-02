@@ -24,8 +24,8 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     }),
   ).pipe(
     tap((response) => {
-      if (response instanceof HttpResponse && response.headers.has('x-new-jwt-token')) {
-        const newToken = response.headers.get('x-new-jwt-token');
+      if (response instanceof HttpResponse && response.headers.has('x-new-access-token')) {
+        const newToken = response.headers.get('x-new-access-token');
         if (newToken) updateToken(newToken);
       }
     }),
