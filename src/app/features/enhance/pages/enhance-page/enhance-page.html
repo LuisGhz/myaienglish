@@ -1,20 +1,20 @@
-<main class="h-full flex flex-col items-center gap-4" [formGroup]="translateForm">
+<main class="h-full flex flex-col items-center gap-4" [formGroup]="enhanceForm">
   <section class="w-1/2 max-w-md min-w-80">
-    <label class="sr-only" for="text-to-translate" id="text-to-translate-label"
-      >Text to translate:</label
+    <label class="sr-only" for="text-to-enhance" id="text-to-enhance-label"
+      >Text to enhance:</label
     >
     <textarea
       class=""
-      formControlName="textToTranslate"
-      id="text-to-translate"
-      aria-labelledby="text-to-translate-label"
-      aria-describedby="text-to-translate-desc"
+      formControlName="textToEnhance"
+      id="text-to-enhance"
+      aria-labelledby="text-to-enhance-label"
+      aria-describedby="text-to-enhance-desc"
       nz-input
       [nzAutosize]="{ minRows: 3, maxRows: 5 }"
       placeholder="Text to enhance"
     ></textarea>
-    <span id="text-to-translate-desc" class="sr-only"
-      >Enter the text you want to translate or enhance.</span
+    <span id="text-to-enhance-desc" class="sr-only"
+      >Enter the text you want to enhance.</span
     >
   </section>
   <section class="w-1/2 max-w-md min-w-80">
@@ -38,24 +38,24 @@
   </section>
   <section class="flex justify-between gap-4 w-1/2 max-w-md min-w-80">
     <section class="flex-1">
-      @if (translatedText() !== null) {
+      @if (enhancedText() !== null) {
         <ul class="text-app" aria-live="polite" aria-atomic="true">
           <li>
-            <span class="font-semibold me-1">Grammar fix:</span> {{ translatedText()!.grammarFix }}
+            <span class="font-semibold me-1">Grammar fix:</span> {{ enhancedText()!.grammarFix }}
           </li>
           <li>
             <span class="font-semibold me-1">Informal way:</span>
-            {{ translatedText()!.informalWay }}
+            {{ enhancedText()!.informalWay }}
           </li>
           <li>
             <span class="font-semibold me-1">Semi-formal way:</span>
-            {{ translatedText()!.semiFormalWay }}
+            {{ enhancedText()!.semiFormalWay }}
           </li>
           <li>
-            <span class="font-semibold me-1">Formal way:</span> {{ translatedText()!.formalWay }}
+            <span class="font-semibold me-1">Formal way:</span> {{ enhancedText()!.formalWay }}
           </li>
           <li>
-            <span class="font-semibold me-1">Polite way:</span> {{ translatedText()!.politeWay }}
+            <span class="font-semibold me-1">Polite way:</span> {{ enhancedText()!.politeWay }}
           </li>
         </ul>
       }
@@ -64,8 +64,8 @@
       class="wcag-outline w-14 h-14 text-white bg-primary hover:bg-primary-hover disabled:bg-blue-400 disabled:cursor-not-allowed flex items-center justify-center gap-2 px-4 py-2 text-2xl font-medium bg-blue-500 hocusvi:bg-blue-600 rounded-full trans-c-200"
       type="button"
       aria-label="Enhance text"
-      (click)="onTranslate()"
-      [disabled]="translateForm.invalid"
+      (click)="onEnhance()"
+      [disabled]="enhanceForm.invalid"
     >
       <nz-icon nzType="translation" nzTheme="outline" />
     </button>

@@ -1,14 +1,14 @@
 import { Routes } from '@angular/router';
 
-export const TRANSLATION_ROUTES: Routes = [
+export const ENHANCE_ROUTES: Routes = [
   {
     path: '',
     loadComponent: () => import('./pages/home-page/home-page').then((m) => m.HomePage),
   },
   {
-    path: 'translate',
+    path: 'enhance',
     loadComponent: () =>
-      import('./pages/translate-page/translate-page').then((m) => m.TranslatePage),
+      import('./pages/enhance-page/enhance-page').then((m) => m.EnhancePage),
   },
   {
     path: 'instructions',

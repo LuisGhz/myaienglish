@@ -18,8 +18,8 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import { InstructionsApi } from '@transl/services/instructions-api';
-import { Instruction } from '@transl/models/instruction';
+import { InstructionsApi } from '@enhance/services/instructions-api';
+import { Instruction } from '@enhance/models/instruction';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 interface InstructionForm {

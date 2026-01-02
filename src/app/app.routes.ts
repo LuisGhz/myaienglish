@@ -7,7 +7,7 @@ export const routes: Routes = [
     canActivate: [authGuard],
     canActivateChild: [authChildGuard],
     loadChildren: () =>
-      import('./features/translation/translation.routes').then((m) => m.TRANSLATION_ROUTES),
+      import('./features/enhance/enhance.routes').then((m) => m.ENHANCE_ROUTES),
   },
   {
     path: 'auth',

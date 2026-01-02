@@ -1,4 +1,4 @@
-export interface TranslateTextRes {
+export interface EnhanceTextRes {
   grammarFix: string;
   informalWay: string;
   semiFormalWay: string;
