@@ -7,6 +7,7 @@ import { AppActions } from './app.actions';
   name: 'app',
   defaults: {
     isMenuCollapsed: false,
+    isMobile: false,
   },
 })
 @Injectable()
@@ -14,6 +15,11 @@ export class AppStore {
   @Selector()
   static isMenuCollapsed(state: AppStoreModel) {
     return state.isMenuCollapsed;
+  }
+
+  @Selector()
+  static isMobile(state: AppStoreModel) {
+    return state.isMobile;
   }
 
   @Action(AppActions.CollapseMenu)
@@ -24,5 +30,10 @@ export class AppStore {
   @Action(AppActions.ExpandMenu)
   setMenuExpanded(ctx: StateContext<AppStoreModel>) {
     ctx.patchState({ isMenuCollapsed: false });
+  }
+
+  @Action(AppActions.UpdateIsMobile)
+  setIsMobile(ctx: StateContext<AppStoreModel>, action: AppActions.UpdateIsMobile) {
+    ctx.patchState({ isMobile: action.isMobile });
   }
 }

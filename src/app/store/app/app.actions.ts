@@ -10,4 +10,9 @@ export namespace AppActions {
     static readonly type = type('Expand Menu');
     constructor() {}
   }
+
+  export class UpdateIsMobile {
+    static readonly type = type('Update Is Mobile');
+    constructor(public isMobile: boolean) {}
+  }
 }
