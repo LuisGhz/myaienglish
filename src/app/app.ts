@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@ang
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { RouterOutlet } from '@angular/router';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { Sider } from './components/sider/sider';
+import { Sider } from '@core/components/sider/sider';
 import { dispatch, select } from '@ngxs/store';
 import { AuthStore } from './store/auth/auth.store';
 import { AppStore } from '@st/app/app.store';
