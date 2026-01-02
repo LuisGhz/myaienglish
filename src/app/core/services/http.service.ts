@@ -28,35 +28,35 @@ export class HttpService {
   #http = inject(HttpClient);
   #api = environment.apiUrl;
 
-  get<T>(path: string, options?: HttpClientOptions) {
-    return this.#http.get<T>(this.#api + path, options);
+  protected get<R>(path: string, options?: HttpClientOptions) {
+    return this.#http.get<R>(this.#api + path, options);
   }
 
-  getP<T>(path: string, options?: HttpClientOptions) {
-    return firstValueFrom(this.#http.get<T>(this.#api + path, options));
+  protected getP<R>(path: string, options?: HttpClientOptions) {
+    return firstValueFrom(this.#http.get<R>(this.#api + path, options));
   }
 
-  post<T>(path: string, body: any, options?: HttpClientOptions) {
-    return this.#http.post<T>(this.#api + path, body, options);
+  protected post<R, B>(path: string, body: B, options?: HttpClientOptions) {
+    return this.#http.post<R>(this.#api + path, body, options);
   }
 
-  postP<T, B>(path: string, body: B, options?: HttpClientOptions) {
-    return firstValueFrom(this.#http.post<T>(this.#api + path, body, options));
+  protected postP<R, B>(path: string, body: B, options?: HttpClientOptions) {
+    return firstValueFrom(this.#http.post<R>(this.#api + path, body, options));
   }
 
-  put<T, B>(path: string, body: B, options?: HttpClientOptions) {
-    return this.#http.put<T>(this.#api + path, body, options);
+  protected put<R, B>(path: string, body: B, options?: HttpClientOptions) {
+    return this.#http.put<R>(this.#api + path, body, options);
   }
 
-  putP<T, B>(path: string, body: B, options?: HttpClientOptions) {
-    return firstValueFrom(this.#http.put<T>(this.#api + path, body, options));
+  protected putP<R, B>(path: string, body: B, options?: HttpClientOptions) {
+    return firstValueFrom(this.#http.put<R>(this.#api + path, body, options));
   }
 
-  delete<T>(path: string, options?: HttpClientOptions) {
-    return this.#http.delete<T>(this.#api + path, options);
+  protected delete<R>(path: string, options?: HttpClientOptions) {
+    return this.#http.delete<R>(this.#api + path, options);
   }
 
-  deleteP<T>(path: string, options?: HttpClientOptions) {
-    return firstValueFrom(this.#http.delete<T>(this.#api + path, options));
+  protected deleteP<R>(path: string, options?: HttpClientOptions) {
+    return firstValueFrom(this.#http.delete<R>(this.#api + path, options));
   }
 }

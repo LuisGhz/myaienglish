@@ -8,7 +8,7 @@ import { EnhanceTextRes } from '@enhance/models/enhance-text-res.model';
 })
 export class EnhanceApi extends HttpService {
   enhanceText({ textToEnhance, context }: EnhanceTextReq) {
-    return this.post<EnhanceTextRes>('/enhance', {
+    return this.post<EnhanceTextRes, EnhanceTextReq>('/enhance', {
       textToEnhance,
       context,
     });
