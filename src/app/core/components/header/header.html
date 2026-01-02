@@ -1,0 +1,14 @@
+<header class="flex gap-4 items-center h-full" role="banner" aria-labelledby="site-title">
+  @if (isMenuCollapsed()) {
+    <button
+      class="text-app wcag-outline flex items-center"
+      type="button"
+      (click)="onExpandMenu()"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+    >
+      <nz-icon class="text-xl" nzType="menu-unfold" nzTheme="outline" aria-hidden="true" />
+    </button>
+  }
+  <h1 id="site-title" class="text-xl font-semibold text-app !my-0">My AI English</h1>
+</header>

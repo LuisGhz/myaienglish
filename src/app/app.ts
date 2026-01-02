@@ -7,10 +7,11 @@ import { dispatch, select } from '@ngxs/store';
 import { AuthStore } from './store/auth/auth.store';
 import { AppStore } from '@st/app/app.store';
 import { AppActions } from '@st/app/app.actions';
+import { Header } from '@core/components/header/header';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NzLayoutModule, Sider],
+  imports: [RouterOutlet, NzLayoutModule, Sider, Header],
   templateUrl: './app.html',
   styleUrl: './app.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
