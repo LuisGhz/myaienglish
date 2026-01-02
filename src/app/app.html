@@ -1,10 +1,20 @@
 @if (isAuthenticated()) {
+  @if (isMobile() && !isCollapsed()) {
+    <div
+      class="backdrop-menu"
+      (click)="collapseFromBackdrop()"
+      aria-label="Backdrop menu"
+      [aria-hidden]="!isMobile() || isCollapsed()"
+    ></div>
+  }
+  <div></div>
   <nz-layout class="min-h-dvh bg-app">
     <nz-sider
       class="bg-app border-e border-e-dove-gray-400 static md:relative"
       [nzCollapsedWidth]="collapsedWidth()"
       [nzCollapsed]="isCollapsed()"
       [nzWidth]="expandedWidth()"
+      [class.absolute-menu]="isMobile()"
     >
       <app-sider />
     </nz-sider>

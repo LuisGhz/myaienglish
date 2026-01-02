@@ -24,6 +24,7 @@ export class App implements OnInit {
   readonly #mobileQuery = '(max-width: 991px)';
   readonly isCollapsed = select(AppStore.isMenuCollapsed);
   readonly isAuthenticated = select(AuthStore.isAuthenticated);
+  readonly isMobile = select(AppStore.isMobile);
   readonly collapsedWidth = signal(0);
   readonly expandedWidth = signal(200);
 
@@ -37,5 +38,9 @@ export class App implements OnInit {
         this.#expand();
       }
     });
+  }
+
+  collapseFromBackdrop(): void {
+    this.#collapse();
   }
 }
