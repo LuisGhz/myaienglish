@@ -4,7 +4,6 @@ import { rxResource } from '@angular/core/rxjs-interop';
 import { MarkdownModule } from 'ngx-markdown';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-import { InstructionsApi } from '@enhance/services/instructions-api';
 import { EnhanceApi } from '@enhance/services/enhance-api';
 import { EnhanceTextReq } from '@enhance/models/enhance-text-req.model';
 import { NzButtonModule } from 'ng-zorro-antd/button';

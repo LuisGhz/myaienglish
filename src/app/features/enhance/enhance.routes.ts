@@ -10,9 +10,4 @@ export const ENHANCE_ROUTES: Routes = [
     loadComponent: () =>
       import('./pages/enhance-page/enhance-page').then((m) => m.EnhancePage),
   },
-  {
-    path: 'instructions',
-    loadComponent: () =>
-      import('./pages/instructions-page/instructions-page').then((m) => m.InstructionsPage),
-  },
 ];
