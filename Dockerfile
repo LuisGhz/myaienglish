@@ -1,16 +1,17 @@
-# Stage 1: Build the Angular application
-FROM node:20.19-alpine AS build
+# Stage 1: Build the Angular application using Bun (pinned stable, small variant)
+# Using the `1.3.5-distroless` tag which is a stable, small image (non-canary)
+FROM oven/bun:1.3.5-alpine AS build
 WORKDIR /app
 
-# Copy package files and install dependencies
+# Copy package files and install dependencies using Bun
 COPY package.json package-lock.json* ./
-RUN npm ci
+RUN bun install
 
 # Copy application files
 COPY . .
 
-# Build the application
-RUN npm run build
+# Build the application using Bun
+RUN bun run build
 
 # Stage 2: Serve the built application with Nginx
 FROM nginx:alpine
