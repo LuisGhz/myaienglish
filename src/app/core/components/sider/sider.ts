@@ -31,6 +31,14 @@ export class Sider {
     this.#collapse();
   }
 
+  collapseIfMobile(): void {
+    if (this.isMobile()) {
+      setTimeout(() => {
+        this.#collapse();
+      }, 100);
+    }
+  }
+
   async logout() {
     await this.#authApi.logout();
   }

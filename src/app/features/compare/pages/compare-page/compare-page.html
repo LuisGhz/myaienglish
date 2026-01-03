@@ -1,0 +1,71 @@
+<main class="h-full flex flex-col items-center gap-4" [formGroup]="compareForm">
+  <h1 class="sr-only">Compare words and phrases</h1>
+  <section class="w-1/2 max-w-md min-w-80">
+    <label class="sr-only" for="additional-context">Additional context</label>
+    <textarea
+      class="w-full"
+      formControlName="context"
+      id="additional-context"
+      nz-input
+      [nzAutosize]="{
+        minRows: 3,
+        maxRows: 5,
+      }"
+      placeholder="You can provide any additional context that might help improve the result, e.g., 'I'm waiting a call from my boss'"
+    ></textarea>
+  </section>
+  <section class="w-1/2 max-w-md min-w-80" formArrayName="inputs">
+    <div>
+      @for (group of inputs.controls; track $index) {
+        <label class="sr-only" for="input-{{ $index }}">Input {{ $index + 1 }}</label>
+        <textarea
+          id="input-{{ $index }}"
+          class="w-full mb-2"
+          [formControlName]="$index"
+          nz-input
+          [nzAutosize]="{ minRows: 1, maxRows: 2 }"
+        ></textarea>
+      }
+    </div>
+    <div class="mt-4 flex justify-end gap-4">
+      <button
+        class="text-white bg-blue-600 hocus:bg-blue-700 trans-c-200 w-12 h-12 rounded-full cursor-pointer"
+        type="button"
+        aria-label="Add input"
+        (click)="addInput()"
+      >
+        <nz-icon class="text-xl" nzType="plus" aria-hidden="true" />
+      </button>
+      <button
+        class="wcag-outline w-12 h-12 text-white bg-primary hover:bg-primary-hover disabled:bg-blue-200 disabled:text-gray-500 disabled:cursor-not-allowed flex items-center justify-center gap-2 px-4 py-2 text-2xl font-medium bg-blue-500 hocusvi:bg-blue-600 rounded-full trans-c-200"
+        type="button"
+        aria-label="Compare words and phrases"
+        (click)="onSend()"
+        [disabled]="compareForm.invalid"
+      >
+        <nz-icon nzType="translation" nzTheme="outline" aria-hidden="true" />
+      </button>
+    </div>
+    @if (result()) {
+      <section
+        class="mt-8 p-4 border border-gray-300 rounded-md text-app"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        <h2 class="sr-only" id="compare-results-heading">Comparison results</h2>
+        @for (input of result()?.inputs; track $index) {
+          <section class="mb-1.5" aria-labelledby="compare-results-heading">
+            <div>
+              <span class="font-semibold">{{ input.input }}:</span>
+            </div>
+            <div>{{ input.explanation }}</div>
+          </section>
+        }
+        <section>
+          {{ result()?.summary }}
+        </section>
+      </section>
+    }
+  </section>
+</main>

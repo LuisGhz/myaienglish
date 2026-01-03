@@ -19,6 +19,7 @@
         [attr.title]="isCollapsed() ? 'Enhance' : null"
         aria-label="Enhance"
         [attr.tabindex]="isCollapsed() ? -1 : null"
+        (click)="collapseIfMobile()"
       >
         <span>Enhance</span>
       </a>
@@ -26,10 +27,11 @@
     <li>
       <a
         class="app-link app-link-bg-hover text-lg cursor-pointer block rounded px-2 py-1 wcag-ring"
-        routerLink="enhance"
-        [attr.title]="isCollapsed() ? 'Enhance' : null"
-        aria-label="Enhance"
+        routerLink="compare"
+        [attr.title]="isCollapsed() ? 'Compare' : null"
+        aria-label="Compare"
         [attr.tabindex]="isCollapsed() ? -1 : null"
+        (click)="collapseIfMobile()"
       >
         <span>VS</span>
       </a>

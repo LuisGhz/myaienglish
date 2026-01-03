@@ -6,8 +6,13 @@ export const routes: Routes = [
     path: '',
     canActivate: [authGuard],
     canActivateChild: [authChildGuard],
-    loadChildren: () =>
-      import('./features/enhance/enhance.routes').then((m) => m.ENHANCE_ROUTES),
+    loadChildren: () => import('./features/enhance/enhance.routes').then((m) => m.ENHANCE_ROUTES),
+  },
+  {
+    path: 'compare',
+    canActivate: [authGuard],
+    canActivateChild: [authChildGuard],
+    loadChildren: () => import('./features/compare/compare.routes').then((m) => m.COMPARE_ROUTES),
   },
   {
     path: 'auth',
