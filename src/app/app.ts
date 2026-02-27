@@ -4,10 +4,11 @@ import { RouterOutlet } from '@angular/router';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { Sider } from '@core/components/sider/sider';
 import { dispatch, select } from '@ngxs/store';
-import { AuthStore } from './store/auth/auth.store';
 import { AppStore } from '@st/app/app.store';
 import { AppActions } from '@st/app/app.actions';
 import { Header } from '@core/components/header/header';
+import { AuthService } from '@auth0/auth0-angular';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,7 @@ export class App implements OnInit {
   readonly #updateIsMobile = dispatch(AppActions.UpdateIsMobile);
   readonly #mobileQuery = '(max-width: 991px)';
   readonly isCollapsed = select(AppStore.isMenuCollapsed);
-  readonly isAuthenticated = select(AuthStore.isAuthenticated);
+  readonly isAuthenticated = toSignal(inject(AuthService).isAuthenticated$, { initialValue: false });
   readonly isMobile = select(AppStore.isMobile);
   readonly collapsedWidth = signal(0);
   readonly expandedWidth = signal(200);

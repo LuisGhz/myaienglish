@@ -16,7 +16,6 @@
     "module": "preserve",
     "baseUrl": "./",
     "paths": {
-      "@auth/*": ["./src/app/features/auth/*"],
       "@enhance/*": ["./src/app/features/enhance/*"],
       "@st/*": ["./src/app/store/*"],
       "@core/*": ["./src/app/core/*"],

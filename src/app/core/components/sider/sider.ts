@@ -1,18 +1,16 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  computed,
-  effect,
   inject,
-  output,
   signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { AuthApi } from '@auth/services';
-import { dispatch, select } from '@ngxs/store';
+import { dispatch } from '@ngxs/store';
 import { AppActions } from '@st/app/app.actions';
 import { AppStore } from '@st/app/app.store';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { AuthService } from '@auth0/auth0-angular';
+import { select } from '@ngxs/store';
 
 @Component({
   selector: 'app-sider',
@@ -21,7 +19,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Sider {
-  readonly #authApi = inject(AuthApi);
+  readonly #authService = inject(AuthService);
   readonly isCollapsed = select(AppStore.isMenuCollapsed);
   readonly #collapse = dispatch(AppActions.CollapseMenu);
 
@@ -39,7 +37,7 @@ export class Sider {
     }
   }
 
-  async logout() {
-    await this.#authApi.logout();
+  logout() {
+    this.#authService.logout({ logoutParams: { returnTo: window.location.origin } });
   }
 }

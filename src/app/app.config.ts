@@ -18,10 +18,10 @@ import { withNgxsReduxDevtoolsPlugin } from '@ngxs/devtools-plugin';
 import { withNgxsFormPlugin } from '@ngxs/form-plugin';
 import { withNgxsStoragePlugin, StorageEngine, STORAGE_ENGINE } from '@ngxs/storage-plugin';
 import { provideStore } from '@ngxs/store';
-import { AuthStore } from './store/auth/auth.store';
 import { AppStore } from '@st/app/app.store';
 import { errorHandlerInterceptor } from '@core/interceptors';
-import { authInterceptor } from '@core/interceptors/auth-interceptor';
+import { provideAuth0, authHttpInterceptorFn } from '@auth0/auth0-angular';
+import { environment } from '../environments/environment';
 
 import { provideNzIcons } from 'ng-zorro-antd/icon';
 import { LogoutOutline } from '@ant-design/icons-angular/icons';
@@ -61,7 +61,15 @@ export const appConfig: ApplicationConfig = {
     provideNzI18n(en_US),
     provideNzIcons([LogoutOutline]),
     provideAnimationsAsync(),
-    provideHttpClient(withInterceptors([errorHandlerInterceptor, authInterceptor])),
+    provideAuth0({
+      domain: environment.auth0.domain,
+      clientId: environment.auth0.clientId,
+      authorizationParams: environment.auth0.authorizationParams,
+      httpInterceptor: {
+        allowedList: [`${environment.apiUrl}/*`],
+      },
+    }),
+    provideHttpClient(withInterceptors([errorHandlerInterceptor, authHttpInterceptorFn])),
     provideMarkdown({
       loader: HttpClient,
       mermaidOptions: {
@@ -77,11 +85,11 @@ export const appConfig: ApplicationConfig = {
       registrationStrategy: 'registerWhenStable:30000',
     }),
     provideStore(
-      [AuthStore, AppStore],
+      [AppStore],
       withNgxsReduxDevtoolsPlugin(),
       withNgxsFormPlugin(),
       withNgxsStoragePlugin({
-        keys: ['auth', 'app'],
+        keys: ['app'],
       }),
     ),
     {

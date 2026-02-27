@@ -15,10 +15,6 @@ export const routes: Routes = [
     loadChildren: () => import('./features/compare/compare.routes').then((m) => m.COMPARE_ROUTES),
   },
   {
-    path: 'auth',
-    loadChildren: () => import('./features/auth/auth.routes').then((m) => m.AUTH_ROUTES),
-  },
-  {
     path: '**',
     redirectTo: '',
   },
