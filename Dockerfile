@@ -3,6 +3,12 @@
 FROM oven/bun:1.3.5-alpine AS build
 WORKDIR /app
 
+# Auth0 build-time environment variables
+ARG NG_APP_AUTH0_DOMAIN
+ARG NG_APP_AUTH0_CLIENT_ID
+ENV NG_APP_AUTH0_DOMAIN=$NG_APP_AUTH0_DOMAIN
+ENV NG_APP_AUTH0_CLIENT_ID=$NG_APP_AUTH0_CLIENT_ID
+
 # Copy package files and install dependencies using Bun
 COPY package.json package-lock.json* ./
 RUN bun install
