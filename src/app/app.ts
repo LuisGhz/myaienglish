@@ -9,6 +9,7 @@ import { AppActions } from '@st/app/app.actions';
 import { Header } from '@core/components/header/header';
 import { AuthService } from '@auth0/auth0-angular';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { catchError, EMPTY, filter, switchMap, take } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -19,12 +20,13 @@ import { toSignal } from '@angular/core/rxjs-interop';
 })
 export class App implements OnInit {
   readonly #breakpointObserver = inject(BreakpointObserver);
+  readonly #authService = inject(AuthService);
   readonly #collapse = dispatch(AppActions.CollapseMenu);
   readonly #expand = dispatch(AppActions.ExpandMenu);
   readonly #updateIsMobile = dispatch(AppActions.UpdateIsMobile);
   readonly #mobileQuery = '(max-width: 991px)';
   readonly isCollapsed = select(AppStore.isMenuCollapsed);
-  readonly isAuthenticated = toSignal(inject(AuthService).isAuthenticated$, { initialValue: false });
+  readonly isAuthenticated = toSignal(this.#authService.isAuthenticated$, { initialValue: false });
   readonly isMobile = select(AppStore.isMobile);
   readonly collapsedWidth = signal(0);
   readonly expandedWidth = signal(200);
@@ -39,9 +41,23 @@ export class App implements OnInit {
         this.#expand();
       }
     });
+
+    this.#refreshTokenOnLoad();
   }
 
   collapseFromBackdrop(): void {
     this.#collapse();
+  }
+
+  #refreshTokenOnLoad(): void {
+    this.#authService.isAuthenticated$.pipe(
+      take(1),
+      filter((isAuth) => isAuth),
+      switchMap(() => this.#authService.getAccessTokenSilently()),
+      catchError(() => {
+        this.#authService.logout({ logoutParams: { returnTo: window.location.origin } });
+        return EMPTY;
+      }),
+    ).subscribe();
   }
 }
