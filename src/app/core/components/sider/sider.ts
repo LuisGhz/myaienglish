@@ -1,16 +1,10 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { dispatch } from '@ngxs/store';
+import { dispatch, select } from '@ngxs/store';
 import { AppActions } from '@st/app/app.actions';
 import { AppStore } from '@st/app/app.store';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { AuthService } from '@auth0/auth0-angular';
-import { select } from '@ngxs/store';
 
 @Component({
   selector: 'app-sider',
@@ -21,12 +15,12 @@ import { select } from '@ngxs/store';
 export class Sider {
   readonly #authService = inject(AuthService);
   readonly isCollapsed = select(AppStore.isMenuCollapsed);
+  readonly isMobile = select(AppStore.isMobile);
+  readonly #toggleMenu = dispatch(AppActions.ToggleMenu);
   readonly #collapse = dispatch(AppActions.CollapseMenu);
 
-  readonly isMobile = signal(false);
-
   toggleCollapse(): void {
-    this.#collapse();
+    this.#toggleMenu();
   }
 
   collapseIfMobile(): void {
@@ -37,7 +31,7 @@ export class Sider {
     }
   }
 
-  logout() {
+  logout(): void {
     this.#authService.logout({ logoutParams: { returnTo: window.location.origin } });
   }
 }

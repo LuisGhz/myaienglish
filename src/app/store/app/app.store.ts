@@ -36,4 +36,9 @@ export class AppStore {
   setIsMobile(ctx: StateContext<AppStoreModel>, action: AppActions.UpdateIsMobile) {
     ctx.patchState({ isMobile: action.isMobile });
   }
+
+  @Action(AppActions.ToggleMenu)
+  toggleMenu(ctx: StateContext<AppStoreModel>) {
+    ctx.patchState({ isMenuCollapsed: !ctx.getState().isMenuCollapsed });
+  }
 }

@@ -15,4 +15,9 @@ export namespace AppActions {
     static readonly type = type('Update Is Mobile');
     constructor(public isMobile: boolean) {}
   }
+
+  export class ToggleMenu {
+    static readonly type = type('Toggle Menu');
+    constructor() {}
+  }
 }
