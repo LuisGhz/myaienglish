@@ -20,7 +20,7 @@
   }
 
   .wcag-ring {
-    @apply focus:!ring-2 dark:focus:!ring-gray-200 focus:!ring-dove-gray-900;
+    @apply focus-visible:!ring-2 dark:focus-visible:!ring-gray-200 focus-visible:!ring-dove-gray-900;
   }
 
   .trans-c-200 {
