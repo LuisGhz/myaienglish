@@ -1,5 +1,6 @@
 <main class="h-full flex flex-col items-center gap-4" [formGroup]="compareForm">
   <h1 class="sr-only">Compare words and phrases</h1>
+  <p class="text-center text-lg text-app">Enter the words or phrases you want to compare below.</p>
   <section class="w-1/2 max-w-md min-w-80">
     <label class="sr-only" for="additional-context">Additional context</label>
     <textarea
@@ -11,7 +12,7 @@
         minRows: 3,
         maxRows: 5,
       }"
-      placeholder="You can provide any additional context that might help improve the result, e.g., 'I'm waiting a call from my boss'"
+      placeholder="You can provide any additional context that might help to improve the result, e.g., 'I'm waiting a call from my boss'"
     ></textarea>
   </section>
   <section class="w-1/2 max-w-md min-w-80" formArrayName="inputs">
