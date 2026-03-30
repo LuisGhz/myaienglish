@@ -5,6 +5,7 @@ export const environment = {
     clientId: import.meta.env['NG_APP_AUTH0_CLIENT_ID'] as string,
     authorizationParams: {
       redirect_uri: window.location.origin,
+      audience: import.meta.env['NG_APP_AUTH0_AUDIENCE'] as string,
     },
   },
 };
