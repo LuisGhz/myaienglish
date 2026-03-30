@@ -1,7 +1,7 @@
-<header class="flex gap-4 items-center h-full" role="banner" aria-labelledby="site-title">
+<header class="flex h-full items-center gap-3" role="banner" aria-label="Workspace header">
   @if (isMenuCollapsed()) {
     <button
-      class="text-app wcag-outline flex items-center"
+      class="wcag-outline flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-100 transition hover:border-sky-400/30 hover:bg-sky-500/10"
       type="button"
       (click)="onExpandMenu()"
       aria-label="Open navigation menu"
@@ -10,5 +10,10 @@
       <nz-icon class="text-xl" nzType="menu-unfold" nzTheme="outline" aria-hidden="true" />
     </button>
   }
-  <h1 id="site-title" class="text-xl font-semibold text-app !my-0">My AI English</h1>
+  <div class="flex flex-col">
+    <span class="text-[0.65rem] font-semibold uppercase tracking-[0.32em] text-slate-400">
+      AI workspace
+    </span>
+    <span class="text-sm font-semibold text-slate-100">My AI English</span>
+  </div>
 </header>
