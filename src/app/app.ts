@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { RouterOutlet } from '@angular/router';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
@@ -28,8 +28,8 @@ export class App implements OnInit {
   readonly isCollapsed = select(AppStore.isMenuCollapsed);
   readonly isAuthenticated = toSignal(this.#authService.isAuthenticated$, { initialValue: false });
   readonly isMobile = select(AppStore.isMobile);
-  readonly collapsedWidth = signal(0);
-  readonly expandedWidth = signal(200);
+  readonly collapsedWidth = computed(() => (this.isMobile() ? 0 : 84));
+  readonly expandedWidth = signal(220);
 
   ngOnInit(): void {
     this.#breakpointObserver.observe(this.#mobileQuery).subscribe((result) => {
