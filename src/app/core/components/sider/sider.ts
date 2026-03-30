@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { dispatch, select } from '@ngxs/store';
 import { AppActions } from '@st/app/app.actions';
 import { AppStore } from '@st/app/app.store';
@@ -8,7 +8,7 @@ import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-sider',
-  imports: [RouterLink, NzIconModule],
+  imports: [RouterLink, RouterLinkActive, NzIconModule],
   templateUrl: './sider.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
