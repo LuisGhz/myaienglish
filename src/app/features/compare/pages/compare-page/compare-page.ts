@@ -9,6 +9,7 @@ import { CompareResModel } from '../../models';
   selector: 'app-compare-page',
   imports: [ReactiveFormsModule, NzInputModule, NzIconModule],
   templateUrl: './compare-page.html',
+  styleUrl: './compare-page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ComparePage {
@@ -19,6 +20,7 @@ export class ComparePage {
     context: this.#formBuilder.nonNullable.control(''),
   });
   readonly result = signal<CompareResModel | null>(null);
+  readonly isLoading = signal(false);
 
   get inputs() {
     return this.compareForm.get('inputs') as FormArray;
@@ -36,10 +38,22 @@ export class ComparePage {
   }
 
   async onSend() {
-    if (this.compareForm.valid) {
-      const formValue = this.compareForm.value;
-      const res = await this.#compareApi.compare(formValue.inputs!, formValue.context);
+    if (this.compareForm.invalid || this.isLoading()) {
+      this.compareForm.markAllAsTouched();
+      return;
+    }
+
+    this.isLoading.set(true);
+
+    try {
+      const formValue = this.compareForm.getRawValue();
+      const res = await this.#compareApi.compare(
+        formValue.inputs,
+        formValue.context.trim() || undefined,
+      );
       this.result.set(res);
+    } finally {
+      this.isLoading.set(false);
     }
   }
 }
