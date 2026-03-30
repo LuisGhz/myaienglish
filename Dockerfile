@@ -6,8 +6,11 @@ WORKDIR /app
 # Auth0 build-time environment variables
 ARG NG_APP_AUTH0_DOMAIN
 ARG NG_APP_AUTH0_CLIENT_ID
+ARG NG_APP_AUTH0_AUDIENCE
 ENV NG_APP_AUTH0_DOMAIN=$NG_APP_AUTH0_DOMAIN
 ENV NG_APP_AUTH0_CLIENT_ID=$NG_APP_AUTH0_CLIENT_ID
+ENV NG_APP_AUTH0_AUDIENCE=$NG_APP_AUTH0_AUDIENCE
+
 
 # Copy package files and install dependencies using Bun
 COPY package.json package-lock.json* ./

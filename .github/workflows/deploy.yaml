@@ -30,6 +30,7 @@ jobs:
           build-args: |
             NG_APP_AUTH0_DOMAIN=${{ secrets.NG_APP_AUTH0_DOMAIN }}
             NG_APP_AUTH0_CLIENT_ID=${{ secrets.NG_APP_AUTH0_CLIENT_ID }}
+            NG_APP_AUTH0_AUDIENCE=${{ secrets.NG_APP_AUTH0_AUDIENCE }}
 
       - name: Execute Remote SSH Commands
         uses: appleboy/ssh-action@v1.2.1
