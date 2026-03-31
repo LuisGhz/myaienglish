@@ -5,10 +5,12 @@ import { AppActions } from '@st/app/app.actions';
 import { AppStore } from '@st/app/app.store';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { AuthService } from '@auth0/auth0-angular';
+import { EnhanceIcon } from '@shared/components/icons/enhance-icon/enhance-icon';
+import { CompareIcon } from '@shared/components/icons/compare-icon/compare-icon';
 
 @Component({
   selector: 'app-sider',
-  imports: [RouterLink, RouterLinkActive, NzIconModule],
+  imports: [RouterLink, RouterLinkActive, NzIconModule, EnhanceIcon, CompareIcon],
   templateUrl: './sider.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
