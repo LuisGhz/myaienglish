@@ -9,10 +9,10 @@ const COPY_RESET_DELAY_MS = 2000;
 
 const RESULT_FIELDS: ReadonlyArray<{ key: keyof EnhanceTextRes; label: string }> = [
   { key: 'grammarFix', label: 'Grammar Fix' },
-  { key: 'informalWay', label: 'Informal Way' },
-  { key: 'semiFormalWay', label: 'Semi-Formal Way' },
-  { key: 'formalWay', label: 'Formal Way' },
-  { key: 'politeWay', label: 'Polite Way' },
+  { key: 'informalB2', label: 'Informal B2' },
+  { key: 'informalC1', label: 'Informal C1' },
+  { key: 'formalB2', label: 'Formal B2' },
+  { key: 'formalC1', label: 'Formal C1' },
 ];
 
 @Component({
