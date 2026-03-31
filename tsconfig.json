@@ -18,6 +18,7 @@
     "paths": {
       "@enhance/*": ["./src/app/features/enhance/*"],
       "@st/*": ["./src/app/store/*"],
+      "@shared/*": ["./src/app/shared/*"],
       "@core/*": ["./src/app/core/*"],
       "@env/*": ["./src/environments/*"]
     }
