@@ -101,18 +101,13 @@
           "options": {}
         },
         "test": {
-          "builder": "@ngx-env/builder:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
             "tsConfig": "tsconfig.spec.json",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
-            "styles": [
-              "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
-              "src/styles.css"
+            "buildTarget": "myaienglish:build:development",
+            "runner": "vitest",
+            "setupFiles": [
+              "src/test-setup.ts"
             ]
           }
         }
