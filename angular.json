@@ -106,7 +106,10 @@
             "tsConfig": "tsconfig.spec.json",
             "buildTarget": "myaienglish:build:development",
             "runner": "vitest",
-            "codeCoverageExclude": [
+            "coverageInclude": [
+              "src/**/*.ts"
+            ],
+            "coverageExclude": [
               "**/assets/**",
               "**/icons/**",
               "**/*.map",
@@ -117,7 +120,7 @@
               "**/*.webmanifest",
               "**/scripts.js"
             ],
-            "codeCoverageReporters": [
+            "coverageReporters": [
               "html",
               "json-summary",
               "text-summary"
