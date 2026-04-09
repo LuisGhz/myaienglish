@@ -84,7 +84,7 @@ export class EnhancePage implements OnDestroy {
       this.copiedField.set(key);
 
       if (this.#copyResetTimer !== null) {
-        clearTimeout(this.#copyResetTimer);
+        window.clearTimeout(this.#copyResetTimer);
       }
 
       this.#copyResetTimer = window.setTimeout(() => {
@@ -96,10 +96,10 @@ export class EnhancePage implements OnDestroy {
 
   ngOnDestroy(): void {
     if (this.#copyResetTimer !== null) {
-      clearTimeout(this.#copyResetTimer);
+      window.clearTimeout(this.#copyResetTimer);
     }
   }
 
   readonly #enhanceApi = inject(EnhanceApi);
-  #copyResetTimer: ReturnType<typeof setTimeout> | null = null;
+  #copyResetTimer: number | null = null;
 }

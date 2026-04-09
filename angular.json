@@ -106,6 +106,22 @@
             "tsConfig": "tsconfig.spec.json",
             "buildTarget": "myaienglish:build:development",
             "runner": "vitest",
+            "codeCoverageExclude": [
+              "**/assets/**",
+              "**/icons/**",
+              "**/*.map",
+              "**/*.svg",
+              "**/*.png",
+              "**/*.ico",
+              "**/*.css",
+              "**/*.webmanifest",
+              "**/scripts.js"
+            ],
+            "codeCoverageReporters": [
+              "html",
+              "json-summary",
+              "text-summary"
+            ],
             "setupFiles": [
               "src/test-setup.ts"
             ]
